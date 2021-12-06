@@ -10,7 +10,6 @@
 		44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60554275E7EA9002E4626 /* AppDelegate.swift */; };
 		44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60556275E7EA9002E4626 /* SceneDelegate.swift */; };
 		44C60559275E7EA9002E4626 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60558275E7EA9002E4626 /* ViewController.swift */; };
-		44C6055C275E7EA9002E4626 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44C6055A275E7EA9002E4626 /* Main.storyboard */; };
 		44C6055E275E7EAA002E4626 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44C6055D275E7EAA002E4626 /* Assets.xcassets */; };
 		44C60561275E7EAA002E4626 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */; };
 		44C6056C275E7EAA002E4626 /* LeboncoinAdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6056B275E7EAA002E4626 /* LeboncoinAdsTests.swift */; };
@@ -40,7 +39,6 @@
 		44C60554275E7EA9002E4626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C60556275E7EA9002E4626 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		44C60558275E7EA9002E4626 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		44C6055B275E7EA9002E4626 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		44C6055D275E7EAA002E4626 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44C60560275E7EAA002E4626 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44C60562275E7EAA002E4626 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,7 +100,6 @@
 				44C60554275E7EA9002E4626 /* AppDelegate.swift */,
 				44C60556275E7EA9002E4626 /* SceneDelegate.swift */,
 				44C60558275E7EA9002E4626 /* ViewController.swift */,
-				44C6055A275E7EA9002E4626 /* Main.storyboard */,
 				44C6055D275E7EAA002E4626 /* Assets.xcassets */,
 				44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */,
 				44C60562275E7EAA002E4626 /* Info.plist */,
@@ -233,7 +230,6 @@
 			files = (
 				44C60561275E7EAA002E4626 /* LaunchScreen.storyboard in Resources */,
 				44C6055E275E7EAA002E4626 /* Assets.xcassets in Resources */,
-				44C6055C275E7EA9002E4626 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,14 +293,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		44C6055A275E7EA9002E4626 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				44C6055B275E7EA9002E4626 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -367,7 +355,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -422,7 +410,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -444,7 +432,6 @@
 				INFOPLIST_FILE = LeboncoinAds/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -472,7 +459,6 @@
 				INFOPLIST_FILE = LeboncoinAds/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
