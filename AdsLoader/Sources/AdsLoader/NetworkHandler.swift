@@ -1,10 +1,3 @@
-//
-//  NetworkHandler.swift
-//  
-//
-//  Created by Евгений Кириллов on 03.09.2021.
-//
-
 import Foundation
 
 /// Networking layer to load some data from server API
