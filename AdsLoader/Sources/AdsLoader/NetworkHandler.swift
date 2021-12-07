@@ -3,7 +3,13 @@ import Foundation
 /// Networking layer to load some data from server API
 struct NetworkHandler {
     typealias GeneralResponse = (Result<Data, TextualError>) -> ()
+    
     private let session: URLSession
+    private let decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return decoder
+    }()
     
     init(session: URLSession = .shared) {
         self.session = session
@@ -41,6 +47,16 @@ struct NetworkHandler {
             }
             
             completion(.success(loadedData))
+        }
+    }
+    
+    func decode<T: Decodable>(_ type: T.Type, from data: Data) -> Result<T, TextualError> {
+        do {
+            let decoded = try decoder.decode(type, from: data)
+            return .success(decoded)
+        } catch {
+            let decodingError = TextualError(description: error.localizedDescription)
+            return .failure(decodingError)
         }
     }
 }
