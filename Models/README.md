@@ -1,3 +1,3 @@
 # Models
 
-A description of this package.
+Defining models which are used throughout the project 
