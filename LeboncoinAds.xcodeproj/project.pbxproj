@@ -47,6 +47,7 @@
 		44C60571275E7EAA002E4626 /* LeboncoinAdsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeboncoinAdsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60575275E7EAA002E4626 /* LeboncoinAdsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeboncoinAdsUITests.swift; sourceTree = "<group>"; };
 		44C60577275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeboncoinAdsUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		44C60586275FBD91002E4626 /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AdsLoader; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		44C60548275E7EA9002E4626 = {
 			isa = PBXGroup;
 			children = (
+				44C60585275FBD91002E4626 /* Packages */,
 				44C60553275E7EA9002E4626 /* LeboncoinAds */,
 				44C6056A275E7EAA002E4626 /* LeboncoinAdsTests */,
 				44C60574275E7EAA002E4626 /* LeboncoinAdsUITests */,
@@ -122,6 +124,14 @@
 				44C60577275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift */,
 			);
 			path = LeboncoinAdsUITests;
+			sourceTree = "<group>";
+		};
+		44C60585275FBD91002E4626 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				44C60586275FBD91002E4626 /* AdsLoader */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
