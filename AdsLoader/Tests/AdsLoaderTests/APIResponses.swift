@@ -1,5 +1,6 @@
 import Foundation
 
+/// Mock responses to test data decoding
 enum APIResponses {
     case category, imageURL, classifiedAd
     

@@ -50,6 +50,11 @@ struct NetworkHandler {
         }
     }
     
+    /// Decode provided data with strongly-typed error
+    /// - Parameters:
+    ///   - type: The type of the value to decode from the supplied JSON objec
+    ///   - data: The JSON object to decode
+    /// - Returns: Decoding `Result`
     func decode<T: Decodable>(_ type: T.Type, from data: Data) -> Result<T, TextualError> {
         do {
             let decoded = try decoder.decode(type, from: data)
