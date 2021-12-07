@@ -10,10 +10,13 @@ let package = Package(
             name: "AdsLoader",
             targets: ["AdsLoader"]),
     ],
+    dependencies: [
+        .package(path: "../Models")
+    ],
     targets: [
         .target(
             name: "AdsLoader",
-            dependencies: []),
+            dependencies: ["Models"]),
         .testTarget(
             name: "AdsLoaderTests",
             dependencies: ["AdsLoader"]),

@@ -1,5 +1,5 @@
 /// Classified ad object
-public struct ClassifiedAd {
+public struct ClassifiedAd: Decodable {
     
     /// Unique identifier of ad
     public let id: Int

@@ -1,7 +1,9 @@
 import Foundation
+import Models
 
 /// An object that handles requests to Leboncoin API
 public struct AdsLoader {
+    public typealias Category = Models.Category
     
     /// Contains array of ``Category`` objects or ``TextualError``. Used in async calls
     public typealias CategoriesResponse = (Result<[Category], TextualError>) -> ()
