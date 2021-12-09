@@ -10,10 +10,13 @@ let package = Package(
             name: "ModelConverter",
             targets: ["ModelConverter"]),
     ],
+    dependencies: [
+        .package(path: "../Models")
+    ],
     targets: [
         .target(
             name: "ModelConverter",
-            dependencies: []),
+            dependencies: ["Models"]),
         .testTarget(
             name: "ModelConverterTests",
             dependencies: ["ModelConverter"]),
