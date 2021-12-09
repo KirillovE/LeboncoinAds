@@ -12,4 +12,17 @@ public struct AdComplete {
     
     /// Detailed representation
     public let details: AdDetails
+
+    public init(
+        id: Int,
+        categoryId: Int,
+        summary: AdSummary,
+        details: AdDetails
+    ) {
+        self.id = id
+        self.categoryId = categoryId
+        self.summary = summary
+        self.details = details
+    }
+    
 }

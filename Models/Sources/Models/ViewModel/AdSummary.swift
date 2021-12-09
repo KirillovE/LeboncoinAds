@@ -15,4 +15,19 @@ public struct AdSummary {
     
     /// Current price of ad
     public let price: Double
+
+    public init(
+        title: String,
+        categoryName: String,
+        isUrgent: Bool,
+        imageAddress: String,
+        price: Double
+    ) {
+        self.title = title
+        self.categoryName = categoryName
+        self.isUrgent = isUrgent
+        self.imageAddress = imageAddress
+        self.price = price
+    }
+    
 }

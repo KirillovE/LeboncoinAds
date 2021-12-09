@@ -21,4 +21,23 @@ public struct AdDetails {
     
     /// Current price of ad
     public let price: Double
+
+    public init(
+        title: String,
+        description: String,
+        categoryName: String,
+        creationDate: String,
+        isUrgent: Bool,
+        imageAddress: String,
+        price: Double
+    ) {
+        self.title = title
+        self.description = description
+        self.categoryName = categoryName
+        self.creationDate = creationDate
+        self.isUrgent = isUrgent
+        self.imageAddress = imageAddress
+        self.price = price
+    }
+    
 }
