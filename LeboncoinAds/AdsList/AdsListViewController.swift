@@ -7,9 +7,10 @@ final class AdsListViewController: UIViewController {
 
     init(adsProvider: AdsProvider) {
         self.adsProvider = adsProvider
-        self.adsProvider.adsHandler = { _ in }
-        self.adsProvider.errorHandler = { _ in }
         super.init(nibName: nil, bundle: nil)
+        
+        self.adsProvider.adsHandler = { [weak self] ads in self?.handleNewAds(ads) }
+        self.adsProvider.errorHandler = { [weak self] error in self?.handleError(error) }
     }
     
     required init?(coder: NSCoder) {
@@ -23,6 +24,9 @@ final class AdsListViewController: UIViewController {
 
     private func handleNewAds(_ ads: [AdComplete]) {
         print("Received \(ads.count) new ads")
+        ads.forEach { ad in
+            print(ad.summary)
+        }
     }
     
     private func handleError(_ error: TextualError) {
