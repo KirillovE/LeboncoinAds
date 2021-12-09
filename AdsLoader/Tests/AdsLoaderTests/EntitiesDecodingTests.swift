@@ -1,5 +1,6 @@
 import XCTest
 @testable import AdsLoader
+@testable import Models
 
 class EntitiesDecodingTests: XCTestCase {
     

@@ -1,4 +1,5 @@
 import Foundation
+import Models
 
 /// Networking layer to load some data from server API
 struct NetworkHandler {
@@ -32,7 +33,7 @@ struct NetworkHandler {
                 let httpResponse = response as? HTTPURLResponse,
                 (200...299).contains(httpResponse.statusCode)
             else {
-                let serverError = TextualError(description: response.debugDescription)
+                let serverError = TextualError(stringLiteral: response.debugDescription)
                 completion(.failure(serverError))
                 return
             }
@@ -60,7 +61,7 @@ struct NetworkHandler {
             let decoded = try decoder.decode(type, from: data)
             return .success(decoded)
         } catch {
-            let decodingError = TextualError(description: error.localizedDescription)
+            let decodingError = TextualError(stringLiteral: error.localizedDescription)
             return .failure(decodingError)
         }
     }

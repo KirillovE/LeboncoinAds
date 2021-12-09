@@ -1,5 +1,6 @@
 import XCTest
 @testable import AdsLoader
+@testable import Models
 
 final class NetworkHandlerTests: XCTestCase {
     private let handler = NetworkHandler()
