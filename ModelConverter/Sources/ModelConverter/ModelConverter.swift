@@ -5,7 +5,10 @@ public struct ModelConverter {
     public init() { }
     
     public func convert(_ rawAds: [ClassifiedAd], using categories: [Category]) -> [AdComplete] {
-        return []
+        let fasterCategories = convertToDict(categories)
+        return rawAds.compactMap { singleAd in
+            convertSingle(singleAd, using: fasterCategories)
+        }
     }
 }
 

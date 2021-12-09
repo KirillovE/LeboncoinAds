@@ -52,6 +52,37 @@ final class ModelConverterTests: XCTestCase {
         XCTAssertNil(converted)
     }
     
+    func testFullAdsConversion() {
+        let ads = (0...1).map(makeAd)
+        let categories: [Models.Category] = [
+            .init(id: 0, name: "zero"),
+            .init(id: 1, name: "first")
+        ]
+        let converted = converter.convert(ads, using: categories)
+        
+        XCTAssertEqual(converted.count, ads.count)
+    }
+    
+    func testPartialAdsConversion() {
+        let ads = (0...1).map(makeAd)
+        let categories: [Models.Category] = [
+            .init(id: 0, name: "zero")
+        ]
+        let converted = converter.convert(ads, using: categories)
+        
+        XCTAssertEqual(converted.count, 1)
+    }
+    
+    func testInconsistentAdsConversion() {
+        let ads = (0...1).map(makeAd)
+        let categories: [Models.Category] = [
+            .init(id: 3, name: "third")
+        ]
+        let converted = converter.convert(ads, using: categories)
+        
+        XCTAssertTrue(converted.isEmpty)
+    }
+    
     private func makeAd(withCategoryID id: Int) -> ClassifiedAd {
         .init(
             id: 0,
