@@ -12,7 +12,9 @@ public struct ModelConverter {
 extension ModelConverter {
     
     func convertToDict(_ categories: [Category]) -> [Int: String] {
-        [:]
+        categories.reduce(into: [:]) { partialResult, cat in
+            partialResult[cat.id] = cat.name
+        }
     }
     
 }
