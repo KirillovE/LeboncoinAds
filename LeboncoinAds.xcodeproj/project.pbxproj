@@ -18,6 +18,7 @@
 		44C6059127623C83002E4626 /* AdsLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 44C6059027623C83002E4626 /* AdsLoader */; };
 		44C6059327623C8C002E4626 /* ModelConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 44C6059227623C8C002E4626 /* ModelConverter */; };
 		44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059527623FDA002E4626 /* AdsProvider.swift */; };
+		44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059727625949002E4626 /* AdsListAssembler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		44C6058D27623BDB002E4626 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		44C6058E27623BEA002E4626 /* ModelConverter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ModelConverter; sourceTree = "<group>"; };
 		44C6059527623FDA002E4626 /* AdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsProvider.swift; sourceTree = "<group>"; };
+		44C6059727625949002E4626 /* AdsListAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListAssembler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
+				44C6059727625949002E4626 /* AdsListAssembler.swift */,
 				44C6059527623FDA002E4626 /* AdsProvider.swift */,
 			);
 			path = AdsList;
@@ -297,6 +300,7 @@
 			files = (
 				44C60559275E7EA9002E4626 /* AdsListViewController.swift in Sources */,
 				44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */,
+				44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
 			);
