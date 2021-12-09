@@ -1,6 +1,18 @@
-public struct ModelConverter {
-    public private(set) var text = "Hello, World!"
+import Models
 
-    public init() {
+public struct ModelConverter {
+
+    public init() { }
+    
+    public func convert(_ rawAds: [ClassifiedAd], using categories: [Category]) -> [AdComplete] {
+        return []
     }
+}
+
+extension ModelConverter {
+    
+    func convertToDict(_ categories: [Category]) -> [Int: String] {
+        [:]
+    }
+    
 }
