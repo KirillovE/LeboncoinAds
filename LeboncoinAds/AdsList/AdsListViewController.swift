@@ -3,6 +3,7 @@ import Models
 
 final class AdsListViewController: UIViewController {
     
+    private let table = AdsListView()
     private var adsProvider: AdsProvider
     private var allAds = [AdComplete]() {
         didSet {
@@ -21,6 +22,10 @@ final class AdsListViewController: UIViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func loadView() {
+        view = table
     }
     
     override func viewDidLoad() {
