@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
 		44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60554275E7EA9002E4626 /* AppDelegate.swift */; };
 		44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60556275E7EA9002E4626 /* SceneDelegate.swift */; };
 		44C60559275E7EA9002E4626 /* AdsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60558275E7EA9002E4626 /* AdsListViewController.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
 		44C60551275E7EA9002E4626 /* LeboncoinAds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeboncoinAds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60554275E7EA9002E4626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C60556275E7EA9002E4626 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
+				447E18EA2763408C00B77F38 /* AdsListView.swift */,
 				44C6059727625949002E4626 /* AdsListAssembler.swift */,
 				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
 				44C6059527623FDA002E4626 /* AdsProvider.swift */,
@@ -305,6 +308,7 @@
 				44C6059A27625D7D002E4626 /* MockAdsProvider.swift in Sources */,
 				44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */,
 				44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */,
+				447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
 			);
