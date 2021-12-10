@@ -4,12 +4,18 @@ import Models
 final class AdsListViewController: UIViewController {
     
     private var adsProvider: AdsProvider
+    private var allAds = [AdComplete]() {
+        didSet {
+            print("Received \(allAds.count) new ads")
+            print(allAds)
+        }
+    }
 
     init(adsProvider: AdsProvider) {
         self.adsProvider = adsProvider
         super.init(nibName: nil, bundle: nil)
         
-        self.adsProvider.adsHandler = { [weak self] ads in self?.handleNewAds(ads) }
+        self.adsProvider.adsHandler = { [weak self] in self?.allAds = $0 }
         self.adsProvider.errorHandler = { [weak self] error in self?.handleError(error) }
     }
     
@@ -20,13 +26,6 @@ final class AdsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         adsProvider.fetchAds()
-    }
-
-    private func handleNewAds(_ ads: [AdComplete]) {
-        print("Received \(ads.count) new ads")
-        ads.forEach { ad in
-            print(ad.summary)
-        }
     }
     
     private func handleError(_ error: TextualError) {
