@@ -26,3 +26,39 @@ public struct AdComplete {
     }
     
 }
+
+extension AdComplete: CustomStringConvertible {
+    
+    public var description: String {
+        """
+        Classified ad #\(id)
+            title: \(summary.title)
+            description: \(details.description.prefix(7))
+            category: \(summary.categoryName)
+            price: \(summary.price)
+            urgency: \(summary.isUrgent ? "urgent" : "not urgent")
+            created: \(details.creationDate)
+        """
+    }
+    
+}
+
+extension AdComplete: CustomDebugStringConvertible {
+    
+    public var debugDescription: String {
+        """
+        
+        id: \(id)
+        title: \(summary.title)
+        description: \(details.description)
+        category: \(categoryId) - \(summary.categoryName)
+        price: \(summary.price)
+        is urgent: \(summary.isUrgent)
+        created: \(details.creationDate)
+        image small: \(summary.imageAddress)
+        image big: \(details.imageAddress)
+        ===
+        """
+    }
+    
+}
