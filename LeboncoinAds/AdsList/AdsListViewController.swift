@@ -44,15 +44,22 @@ final class AdsListViewController: UIViewController {
 private extension AdsListViewController {
     
     func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
-        var snapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
-        snapshot.appendSections([.main])
+        let ads = (selectedCategory == nil)
+        ? allAds
+        : allAds.filter { $0.categoryId == selectedCategory }
         
-        if let category = selectedCategory {
-            let filtered = allAds.filter { $0.categoryId == category }
-            snapshot.appendItems(filtered, toSection: .main)
-        } else {
-            snapshot.appendItems(allAds, toSection: .main)
+        var urgents = [AdComplete]()
+        var nonUrgents = [AdComplete]()
+        ads.forEach { ad in
+            ad.summary.isUrgent
+            ? urgents.append(ad)
+            : nonUrgents.append(ad)
         }
+        
+        var snapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
+        snapshot.appendSections(AdsListSection.allCases)
+        snapshot.appendItems(urgents, toSection: .urgent)
+        snapshot.appendItems(nonUrgents, toSection: .nonUrgent)
         dataSource?.apply(snapshot, animatingDifferences: animated)
     }
     

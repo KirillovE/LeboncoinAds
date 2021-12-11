@@ -1,6 +1,9 @@
 /// Sections of classified ads list
 enum AdsListSection: CaseIterable {
     
-    /// Main section
-    case main
+    /// Section for urgent ads
+    case urgent
+    
+    /// Section for non-urgent ads
+    case nonUrgent
 }
