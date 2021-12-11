@@ -1,12 +1,13 @@
 import UIKit
 import Models
+import XCTest
 
 final class AdsListViewController: UIViewController {
     
     private let table = AdsListView()
-    private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
     private var adsProvider: AdsProvider
-    private var adsListDelegate: AdsListDelegate
+    private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
+    private let adsListDelegate: AdsListDelegate
     
     private var allAds = [AdComplete]() {
         didSet { updateUI() }
@@ -28,69 +29,32 @@ final class AdsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTable()
-        configureDataSource()
+        table.configure(
+            superview: view,
+            dataSource: &dataSource,
+            delegate: adsListDelegate
+        )
         updateUI(animated: false)
         adsProvider.fetchAds()
     }
     
 }
 
-// MARK: - Handling table view
+// MARK: - Action handlers
 private extension AdsListViewController {
     
-    func configureTable() {
-        view.addSubview(table)
-        table.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            table.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            table.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            table.topAnchor.constraint(equalTo: view.topAnchor),
-            table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-        table.configure(delegate: adsListDelegate)
-    }
-    
-    func configureDataSource() {
-        let urgencySymbol = UIImage(systemName: "seal.fill")
-        
-        dataSource = UITableViewDiffableDataSource<AdsListSection, AdComplete>(tableView: table) {
-            [weak self] tableView, indexPath, itemIdentifier in
-            
-            guard let self = self else { return nil }
- 
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.table.reuseID, for: indexPath)
-            var content = cell.defaultContentConfiguration()
-            content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
-            content.secondaryText = itemIdentifier.summary.categoryName
-            // TODO: Replace with actual image
-            content.image = UIImage(named: "Placeholder")
-            content.imageProperties.maximumSize = .init(width: 50, height: 50)
-            content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
-            cell.accessoryView = itemIdentifier.summary.isUrgent ? UIImageView(image: urgencySymbol) : nil
-            cell.contentConfiguration = content
-            
-            return cell
-        }
-    }
-    
     func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
-        var newSnapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
-        newSnapshot.appendSections([.main])
+        var snapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
+        snapshot.appendSections([.main])
         
         if let category = selectedCategory {
             let filtered = allAds.filter { $0.categoryId == category }
-            newSnapshot.appendItems(filtered, toSection: .main)
+            snapshot.appendItems(filtered, toSection: .main)
         } else {
-            newSnapshot.appendItems(allAds, toSection: .main)
+            snapshot.appendItems(allAds, toSection: .main)
         }
-        dataSource?.apply(newSnapshot, animatingDifferences: animated)
+        dataSource?.apply(snapshot, animatingDifferences: animated)
     }
-    
-}
-
-// MARK: - Action handlers
-private extension AdsListViewController {
     
     func handleError(_ error: TextualError) {
         let errorController = UIAlertController(
