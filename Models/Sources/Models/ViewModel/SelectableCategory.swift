@@ -12,7 +12,7 @@ public struct SelectableCategory {
     /// Initialy false
     public var isSelected: Bool = true
 
-    public init(id: Int, name: String, isSelected: Bool = true) {
+    public init(id: Int, name: String, isSelected: Bool = false) {
         self.id = id
         self.name = name
         self.isSelected = isSelected
