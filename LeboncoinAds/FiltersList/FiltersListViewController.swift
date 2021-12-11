@@ -6,10 +6,7 @@ final class FiltersListViewController: UIViewController, FilterProvider {
     private let table = FiltersListView()
     private var dataSource: UITableViewDiffableDataSource<Int, SelectableCategory>?
     private let filtersListDelegate: ListSelectionDelegate
-    
-    private var categories: [SelectableCategory] {
-        didSet { updateUI() }
-    }
+    private var categories: [SelectableCategory]
     
     var categorySelectionHandler: CategoryInfo?
     
@@ -34,22 +31,28 @@ final class FiltersListViewController: UIViewController, FilterProvider {
             dataSource: &dataSource,
             delegate: filtersListDelegate
         )
-        updateUI(animated: false)
+        updateUI()
     }
 
 }
 
 private extension FiltersListViewController {
     
-    func updateUI(animated: Bool = true) {
+    func updateUI() {
         var snapshot = NSDiffableDataSourceSnapshot<Int, SelectableCategory>()
         snapshot.appendSections([0])
         snapshot.appendItems(categories)
-        dataSource?.apply(snapshot, animatingDifferences: animated)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func handleSelectionAt(_ indexPath: IndexPath) {
-        print("Row at \(indexPath) selected")
+        if
+            !categories[indexPath.row].isSelected,
+            let previouslySelected = categories.firstIndex(where: { $0.isSelected }) {
+            categories[previouslySelected].isSelected.toggle()
+        }
+        categories[indexPath.row].isSelected.toggle()
+        updateUI()
     }
     
 }
