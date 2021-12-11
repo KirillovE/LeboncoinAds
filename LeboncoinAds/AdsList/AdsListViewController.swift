@@ -6,17 +6,20 @@ final class AdsListViewController: UIViewController {
     private let table = AdsListView()
     private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
     private var adsProvider: AdsProvider
+    private var adsListDelegate: AdsListDelegate
     
     private var allAds = [AdComplete]() {
         didSet { updateUI() }
     }
 
-    init(adsProvider: AdsProvider) {
+    init(adsProvider: AdsProvider, adsListDelegate: AdsListDelegate) {
         self.adsProvider = adsProvider
+        self.adsListDelegate = adsListDelegate
         super.init(nibName: nil, bundle: nil)
         
         self.adsProvider.adsHandler = { [weak self] in self?.allAds = $0 }
         self.adsProvider.errorHandler = { [weak self] error in self?.handleError(error) }
+        self.adsListDelegate.selectionHandler = { print("Row \($0) selected")}
     }
     
     required init?(coder: NSCoder) {
@@ -51,7 +54,7 @@ final class AdsListViewController: UIViewController {
             table.topAnchor.constraint(equalTo: view.topAnchor),
             table.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-        table.configure(delegate: self)
+        table.configure(delegate: adsListDelegate)
     }
     
     private func configureDataSource() {
@@ -89,8 +92,4 @@ final class AdsListViewController: UIViewController {
         }
         dataSource?.apply(newSnapshot, animatingDifferences: animated)
     }
-}
-
-extension AdsListViewController: UITableViewDelegate {
-    
 }

@@ -6,7 +6,8 @@ struct AdsListAssembler {
     func assembleViewController() -> AdsListViewController {
         let mode = AssemblyMode.mock
         let adsProvider = mode.adsProvider
-        return .init(adsProvider: adsProvider)
+        let adsDelegate = AdsListDelegate()
+        return .init(adsProvider: adsProvider, adsListDelegate: adsDelegate)
     }
     
 }
