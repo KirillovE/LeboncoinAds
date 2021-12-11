@@ -20,7 +20,7 @@ final class AdsListViewController: UIViewController {
         
         self.adsProvider.adsHandler = { [weak self] in self?.allAds = $0 }
         self.adsProvider.errorHandler = { [weak self] error in self?.handleError(error) }
-        self.adsListDelegate.selectionHandler = { print("Row \($0) selected")}
+        self.adsListDelegate.selectionHandler = { [weak self] in self?.handleSelectionAt($0) }
     }
     
     required init?(coder: NSCoder) {
