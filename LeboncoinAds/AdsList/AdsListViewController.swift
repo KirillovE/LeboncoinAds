@@ -8,7 +8,17 @@ final class AdsListViewController: UIViewController {
     private var adsProvider: AdsProvider
     private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
     private let adsListDelegate: ListSelectionDelegate
-    private var categories = [SelectableCategory]()
+    
+    private var categories = [SelectableCategory]() {
+        didSet {
+            let selectedIDs = categories
+                .filter(\.isSelected)
+                .map(\.id)
+            let selectedSet = Set(selectedIDs)
+            updateUI(filteringCategories: selectedSet, animated: true)
+        }
+    }
+    
     private var allAds = [AdComplete]() {
         didSet { updateUI() }
     }
@@ -70,14 +80,17 @@ private extension AdsListViewController {
         let filtersController = FiltersListAssembler().assembleViewController(
             categories: categories
         )
-        filtersController.categorySelectionHandler = { print($0) }
+        filtersController.categorySelectionHandler = { [weak self] in self?.categories = $0 }
         present(filtersController, animated: true)
     }
     
-    func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
-        let ads = (selectedCategory == nil)
+    func updateUI(
+        filteringCategories selectedIDs: Set<Int> = [],
+        animated: Bool = true
+    ) {
+        let ads = selectedIDs.isEmpty
         ? allAds
-        : allAds.filter { $0.categoryId == selectedCategory }
+        : allAds.filter { selectedIDs.contains($0.categoryId) }
         
         var urgents = [AdComplete]()
         var nonUrgents = [AdComplete]()
