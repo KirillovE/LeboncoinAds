@@ -29,6 +29,7 @@ final class AdsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigatoinItems()
         table.configure(
             superview: view,
             dataSource: &dataSource,
@@ -38,10 +39,27 @@ final class AdsListViewController: UIViewController {
         adsProvider.fetchAds()
     }
     
+    private func setNavigatoinItems() {
+        title = "Classified ads"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        let filterButton = UIBarButtonItem(
+            image: .init(systemName: "line.3.horizontal.decrease.circle"),
+            style: .plain,
+            target: self,
+            action: #selector(openFilters)
+        )
+        navigationItem.rightBarButtonItem = filterButton
+    }
+    
 }
 
 // MARK: - Action handlers
 private extension AdsListViewController {
+    
+    @objc
+    func openFilters() {
+        print("Open it!")
+    }
     
     func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
         let ads = (selectedCategory == nil)
