@@ -19,7 +19,7 @@ private extension AdsListAssembler {
         var adsProvider: AdsProvider {
             switch self {
             case .mock:
-                return MockAdsProvider(adsCount: 3)
+                return MockAdsProvider(responsesCount: 7, includeErrors: false)
             case .live:
                 fatalError("Live ads provider not yet implemented")
             }

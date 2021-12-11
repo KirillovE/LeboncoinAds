@@ -1,23 +1,37 @@
 import Models
 import Foundation
 
+/// Simulates request for classifed ads
+///
+/// Can produce errors along with ads.
+/// Multiple responces per one request can be provided
 struct MockAdsProvider: AdsProvider {
     
-    private let adsCount: Int
+    private let responsesCount: Int
+    private let includeErrors: Bool
+    
     var adsHandler: AdsInfo?
     var errorHandler: ErrorInfo?
     
     /// Primary initializer
-    /// - Parameter adsCount: Count of ads to be provided
-    init(adsCount: Int = 7) {
-        self.adsCount = (adsCount > 1) ? adsCount : 1
+    ///
+    /// Success or failure is determined by random generator.
+    /// Responses count less than 1 are ignored
+    /// - Parameters:
+    ///   - responsesCount: Defines number of responses per one request
+    ///   - includeErrors: Defines weather or not errrors should be provided along with successful responses
+    init(responsesCount: Int = 7, includeErrors: Bool = false) {
+        self.responsesCount = (responsesCount > 1) ? responsesCount : 1
+        self.includeErrors = includeErrors
     }
     
     func fetchAds() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            Bool.random()
-            ? provideAds()
-            : provideError()
+        DispatchQueue.concurrentPerform(iterations: responsesCount) { iteration in
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(iteration)) {
+                includeErrors && Bool.random()
+                ? provideError()
+                : provideAds()
+            }
         }
     }
     
@@ -26,7 +40,8 @@ struct MockAdsProvider: AdsProvider {
 private extension MockAdsProvider {
     
     func provideAds() {
-        let ads = generateRandomAds()
+        let ads = generateRandomAds(count: Int.random(in: 1...15))
+        print("Generated \(ads.count) ads")
         adsHandler?(ads)
     }
     
@@ -35,8 +50,8 @@ private extension MockAdsProvider {
         errorHandler?(error)
     }
     
-    func generateRandomAds() -> [AdComplete] {
-        (0...adsCount).map { digit in
+    func generateRandomAds(count: Int) -> [AdComplete] {
+        (0...count).map { digit in
             let title = "Classified ad #\(digit)"
             let category = "Category #\(digit)"
             let price = Double(digit) * 7
