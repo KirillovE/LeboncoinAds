@@ -34,18 +34,12 @@ final class AdsListViewController: UIViewController {
         adsProvider.fetchAds()
     }
     
-    private func handleError(_ error: TextualError) {
-        let errorController = UIAlertController(
-            title: "Error",
-            message: String(describing: error),
-            preferredStyle: .alert
-        )
-        let action = UIAlertAction(title: "OK", style: .default)
-        errorController.addAction(action)
-        present(errorController, animated: true)
-    }
+}
+
+// MARK: - Handling table view
+private extension AdsListViewController {
     
-    private func configureTable() {
+    func configureTable() {
         view.addSubview(table)
         table.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -57,8 +51,8 @@ final class AdsListViewController: UIViewController {
         table.configure(delegate: adsListDelegate)
     }
     
-    private func configureDataSource() {
-        let urgencySymbol = UIImage(systemName: "exclamationmark.circle")
+    func configureDataSource() {
+        let urgencySymbol = UIImage(systemName: "seal.fill")
         
         dataSource = UITableViewDiffableDataSource<AdsListSection, AdComplete>(tableView: table) {
             [weak self] tableView, indexPath, itemIdentifier in
@@ -80,7 +74,7 @@ final class AdsListViewController: UIViewController {
         }
     }
     
-    private func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
+    func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
         var newSnapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
         newSnapshot.appendSections([.main])
         
@@ -91,5 +85,31 @@ final class AdsListViewController: UIViewController {
             newSnapshot.appendItems(allAds, toSection: .main)
         }
         dataSource?.apply(newSnapshot, animatingDifferences: animated)
+    }
+    
+}
+
+// MARK: - Action handlers
+private extension AdsListViewController {
+    
+    func handleError(_ error: TextualError) {
+        let errorController = UIAlertController(
+            title: "Error",
+            message: String(describing: error),
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(title: "OK", style: .default)
+        errorController.addAction(action)
+        present(errorController, animated: true)
+    }
+    
+    func handleSelectionAt(_ indexPath: IndexPath) {
+        guard let selectedAd = dataSource?.itemIdentifier(for: indexPath) else {
+            let error: TextualError = "Something went wrong. Please, tell developer about it"
+            handleError(error)
+            return
+        }
+        
+        print("Need to present ad details:\n\(selectedAd.details)")
     }
 }
