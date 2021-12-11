@@ -129,6 +129,15 @@
 			path = Shared;
 			sourceTree = "<group>";
 		};
+		4411D13F27655DD00034A403 /* ServicesFacade */ = {
+			isa = PBXGroup;
+			children = (
+				44C6059527623FDA002E4626 /* AdsProvider.swift */,
+				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
+			);
+			path = ServicesFacade;
+			sourceTree = "<group>";
+		};
 		44B3BCC2276501530065548B /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,8 +220,7 @@
 				44C6059727625949002E4626 /* AdsListAssembler.swift */,
 				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
 				447E18EA2763408C00B77F38 /* AdsListView.swift */,
-				44C6059527623FDA002E4626 /* AdsProvider.swift */,
-				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
+				4411D13F27655DD00034A403 /* ServicesFacade */,
 				44B3BCC2276501530065548B /* DataSource */,
 			);
 			path = AdsList;
