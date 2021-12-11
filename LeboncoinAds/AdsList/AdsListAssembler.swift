@@ -1,13 +1,16 @@
+import UIKit
+
 /// Assembles classified ads list with needed parameters
 struct AdsListAssembler {
     
     /// Assembles view controller using needed parameters
     /// - Returns: Assembled view controller
-    func assembleViewController() -> AdsListViewController {
+    func assembleViewController() -> UIViewController {
         let mode = AssemblyMode.mockSuccess
         let adsProvider = mode.adsProvider
         let adsDelegate = ListSelectionDelegate()
-        return .init(adsProvider: adsProvider, adsListDelegate: adsDelegate)
+        let listController = AdsListViewController(adsProvider: adsProvider, adsListDelegate: adsDelegate)
+        return UINavigationController(rootViewController: listController)
     }
     
 }
