@@ -8,9 +8,7 @@ final class AdsListViewController: UIViewController {
     private var adsProvider: AdsProvider
     
     private var allAds = [AdComplete]() {
-        didSet {
-            updateUI()
-        }
+        didSet { updateUI() }
     }
 
     init(adsProvider: AdsProvider) {
@@ -27,14 +25,21 @@ final class AdsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        adsProvider.fetchAds()
         configureTable()
         configureDataSource()
         updateUI(animated: false)
+        adsProvider.fetchAds()
     }
     
     private func handleError(_ error: TextualError) {
-        print("Received error: \(error)")
+        let errorController = UIAlertController(
+            title: "Error",
+            message: String(describing: error),
+            preferredStyle: .alert
+        )
+        let action = UIAlertAction(title: "OK", style: .default)
+        errorController.addAction(action)
+        present(errorController, animated: true)
     }
     
     private func configureTable() {
