@@ -55,13 +55,14 @@ private extension MockAdsProvider {
             let title = "Classified ad #\(digit)"
             let category = "Category #\(digit)"
             let price = Double(digit) * 7
+            let priceRepresentation = "\(price) $"
             let isUrgent = Bool.random()
             let summary = AdSummary(
                 title: title,
                 categoryName: category,
                 isUrgent: isUrgent,
                 imageAddress: "Small image #\(digit)",
-                price: price
+                priceRepresentation: priceRepresentation
             )
             let details = AdDetails(
                 title: title,
@@ -70,11 +71,12 @@ private extension MockAdsProvider {
                 creationDate: "\(digit) days ago",
                 isUrgent: isUrgent,
                 imageAddress: "Big image #\(digit)",
-                price: price
+                priceRepresentation: priceRepresentation
             )
             return AdComplete(
                 id: digit,
                 categoryId: digit,
+                price: price,
                 summary: summary,
                 details: details
             )

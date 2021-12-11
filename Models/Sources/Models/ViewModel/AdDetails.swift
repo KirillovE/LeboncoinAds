@@ -19,8 +19,8 @@ public struct AdDetails {
     /// Address of full resolution image
     public let imageAddress: String
     
-    /// Current price of ad
-    public let price: Double
+    /// Current price of ad in needed format
+    public let priceRepresentation: String
 
     public init(
         title: String,
@@ -29,7 +29,7 @@ public struct AdDetails {
         creationDate: String,
         isUrgent: Bool,
         imageAddress: String,
-        price: Double
+        priceRepresentation: String
     ) {
         self.title = title
         self.description = description
@@ -37,7 +37,7 @@ public struct AdDetails {
         self.creationDate = creationDate
         self.isUrgent = isUrgent
         self.imageAddress = imageAddress
-        self.price = price
+        self.priceRepresentation = priceRepresentation
     }
     
 }

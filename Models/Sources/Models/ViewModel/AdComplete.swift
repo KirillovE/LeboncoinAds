@@ -7,6 +7,9 @@ public struct AdComplete {
     /// Identifier of category this ad belongs to
     public let categoryId: Int
     
+    /// Current price of the ad
+    public let price: Double
+    
     /// Shortened representation
     public let summary: AdSummary
     
@@ -16,11 +19,13 @@ public struct AdComplete {
     public init(
         id: Int,
         categoryId: Int,
+        price: Double,
         summary: AdSummary,
         details: AdDetails
     ) {
         self.id = id
         self.categoryId = categoryId
+        self.price = price
         self.summary = summary
         self.details = details
     }
@@ -35,7 +40,7 @@ extension AdComplete: CustomStringConvertible {
             title: \(summary.title)
             description: \(details.description.prefix(7))
             category: \(summary.categoryName)
-            price: \(summary.price)
+            price: \(summary.priceRepresentation)
             urgency: \(summary.isUrgent ? "urgent" : "not urgent")
             created: \(details.creationDate)
         """
@@ -52,7 +57,7 @@ extension AdComplete: CustomDebugStringConvertible {
         title: \(summary.title)
         description: \(details.description)
         category: \(categoryId) - \(summary.categoryName)
-        price: \(summary.price)
+        price: \(summary.priceRepresentation)
         is urgent: \(summary.isUrgent)
         created: \(details.creationDate)
         image small: \(summary.imageAddress)

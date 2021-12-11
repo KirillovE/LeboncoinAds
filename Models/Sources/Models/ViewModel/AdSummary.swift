@@ -13,21 +13,21 @@ public struct AdSummary {
     /// Address of small image
     public let imageAddress: String
     
-    /// Current price of ad
-    public let price: Double
+    /// Current price of ad in needed format
+    public let priceRepresentation: String
 
     public init(
         title: String,
         categoryName: String,
         isUrgent: Bool,
         imageAddress: String,
-        price: Double
+        priceRepresentation: String
     ) {
         self.title = title
         self.categoryName = categoryName
         self.isUrgent = isUrgent
         self.imageAddress = imageAddress
-        self.price = price
+        self.priceRepresentation = priceRepresentation
     }
     
 }

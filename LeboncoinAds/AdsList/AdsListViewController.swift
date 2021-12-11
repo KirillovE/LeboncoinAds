@@ -61,7 +61,7 @@ private extension AdsListViewController {
  
             let cell = tableView.dequeueReusableCell(withIdentifier: self.table.reuseID, for: indexPath)
             var content = cell.defaultContentConfiguration()
-            content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.price)
+            content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
             content.secondaryText = itemIdentifier.summary.categoryName
             // TODO: Replace with actual image
             content.image = UIImage(named: "Placeholder")

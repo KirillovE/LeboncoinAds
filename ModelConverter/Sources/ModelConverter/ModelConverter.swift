@@ -1,10 +1,17 @@
 import Models
+import Foundation
 
 public struct ModelConverter {
+    
+    private let numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        return formatter
+    }()
 
     public init() { }
     
-    public func convert(_ rawAds: [ClassifiedAd], using categories: [Category]) -> [AdComplete] {
+    public func convert(_ rawAds: [ClassifiedAd], using categories: [Models.Category]) -> [AdComplete] {
         let fasterCategories = convertToDict(categories)
         return rawAds.compactMap { singleAd in
             convertSingle(singleAd, using: fasterCategories)
@@ -14,7 +21,7 @@ public struct ModelConverter {
 
 extension ModelConverter {
     
-    func convertToDict(_ categories: [Category]) -> [Int: String] {
+    func convertToDict(_ categories: [Models.Category]) -> [Int: String] {
         categories.reduce(into: [:]) { partialResult, cat in
             partialResult[cat.id] = cat.name
         }
@@ -22,13 +29,16 @@ extension ModelConverter {
     
     func convertSingle(_ ad: ClassifiedAd, using categories: [Int: String]) -> AdComplete? {
         guard let categoryName = categories[ad.categoryId] else { return nil }
+        
+        let priceNumber = NSNumber(floatLiteral: ad.price)
+        let priceRepresentation = numberFormatter.string(from: priceNumber) ?? "0"
 
         let summary = AdSummary(
             title: ad.title,
             categoryName: categoryName,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.small,
-            price: ad.price
+            priceRepresentation: priceRepresentation
         )
 
         let details = AdDetails(
@@ -38,12 +48,13 @@ extension ModelConverter {
             creationDate: ad.creationDate,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.thumb,
-            price: ad.price
+            priceRepresentation: priceRepresentation
         )
         
         return .init(
             id: ad.id,
             categoryId: ad.categoryId,
+            price: ad.price,
             summary: summary,
             details: details
         )
