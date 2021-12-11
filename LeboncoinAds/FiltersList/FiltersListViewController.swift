@@ -52,7 +52,10 @@ private extension FiltersListViewController {
             categories[previouslySelected].isSelected.toggle()
         }
         categories[indexPath.row].isSelected.toggle()
+        
         updateUI()
+        categorySelectionHandler?(categories)
+        dismiss(animated: true)
     }
     
 }
