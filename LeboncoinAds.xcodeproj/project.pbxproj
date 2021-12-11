@@ -97,6 +97,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		44B3BCC1276501170065548B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
+				44C6059527623FDA002E4626 /* AdsProvider.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		44B3BCC2276501530065548B /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				442319732763F12200268B74 /* AdComplete+Hashable.swift */,
+				442319712763F0BB00268B74 /* AdsListSection.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
 		44C60548275E7EA9002E4626 = {
 			isa = PBXGroup;
 			children = (
@@ -169,15 +187,13 @@
 		44C6059427623E24002E4626 /* AdsList */ = {
 			isa = PBXGroup;
 			children = (
-				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
-				44B3BCBD2764F60D0065548B /* AdsListDelegate.swift */,
-				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
-				442319732763F12200268B74 /* AdComplete+Hashable.swift */,
-				442319712763F0BB00268B74 /* AdsListSection.swift */,
-				447E18EA2763408C00B77F38 /* AdsListView.swift */,
 				44C6059727625949002E4626 /* AdsListAssembler.swift */,
+				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
+				447E18EA2763408C00B77F38 /* AdsListView.swift */,
+				44B3BCC1276501170065548B /* Protocols */,
+				44B3BCBD2764F60D0065548B /* AdsListDelegate.swift */,
 				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
-				44C6059527623FDA002E4626 /* AdsProvider.swift */,
+				44B3BCC2276501530065548B /* DataSource */,
 			);
 			path = AdsList;
 			sourceTree = "<group>";
