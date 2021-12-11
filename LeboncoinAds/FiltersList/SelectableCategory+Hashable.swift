@@ -1,8 +1,8 @@
 import Models
 
-extension Category: Hashable {
+extension SelectableCategory: Hashable {
     
-    public static func == (lhs: Category, rhs: Category) -> Bool {
+    public static func == (lhs: SelectableCategory, rhs: SelectableCategory) -> Bool {
         lhs.id == rhs.id
     }
     

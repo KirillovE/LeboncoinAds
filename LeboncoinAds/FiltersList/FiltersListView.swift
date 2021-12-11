@@ -26,7 +26,7 @@ final class FiltersListView: UITableView {
         superview: UIView,
         cellClass: UITableViewCell.Type = UITableViewCell.self,
         reuseID id: String = "CategoryCell",
-        dataSource: inout UITableViewDiffableDataSource<Int, Models.Category>?,
+        dataSource: inout UITableViewDiffableDataSource<Int, SelectableCategory>?,
         delegate: UITableViewDelegate?
     ) {
         placeOnView(superview)
@@ -51,9 +51,9 @@ private extension FiltersListView {
     }
     
     func setupDataSource(
-        _ dataSource: inout UITableViewDiffableDataSource<Int, Models.Category>?
+        _ dataSource: inout UITableViewDiffableDataSource<Int, SelectableCategory>?
     ) {
-        dataSource = UITableViewDiffableDataSource<Int, Models.Category>(tableView: self) {
+        dataSource = UITableViewDiffableDataSource<Int, SelectableCategory>(tableView: self) {
             [weak self] tableView, indexPath, itemIdentifier in
             
             guard let reuseID = self?.reuseID else { return nil }
@@ -61,6 +61,7 @@ private extension FiltersListView {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = itemIdentifier.name
+            cell.accessoryType = itemIdentifier.isSelected ? .checkmark : .none
             cell.contentConfiguration = content
             
             return cell

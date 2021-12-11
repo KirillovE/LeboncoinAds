@@ -10,11 +10,11 @@
 		4411D1352765333A0034A403 /* FiltersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D1342765333A0034A403 /* FiltersListViewController.swift */; };
 		4411D137276534FF0034A403 /* FilterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D136276534FF0034A403 /* FilterProvider.swift */; };
 		4411D13927653C6A0034A403 /* FiltersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D13827653C6A0034A403 /* FiltersListView.swift */; };
-		4411D13B27653DDC0034A403 /* Category+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D13A27653DDC0034A403 /* Category+Hashable.swift */; };
+		4411D13B27653DDC0034A403 /* SelectableCategory+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */; };
 		442319722763F0BB00268B74 /* AdsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319712763F0BB00268B74 /* AdsListSection.swift */; };
 		442319742763F12200268B74 /* AdComplete+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319732763F12200268B74 /* AdComplete+Hashable.swift */; };
 		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
-		44B3BCBE2764F60D0065548B /* AdsListDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBD2764F60D0065548B /* AdsListDelegate.swift */; };
+		44B3BCBE2764F60D0065548B /* ListSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */; };
 		44B3BCC02764FBC30065548B /* SelectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBF2764FBC30065548B /* SelectionProvider.swift */; };
 		44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60554275E7EA9002E4626 /* AppDelegate.swift */; };
 		44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60556275E7EA9002E4626 /* SceneDelegate.swift */; };
@@ -52,11 +52,11 @@
 		4411D1342765333A0034A403 /* FiltersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListViewController.swift; sourceTree = "<group>"; };
 		4411D136276534FF0034A403 /* FilterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvider.swift; sourceTree = "<group>"; };
 		4411D13827653C6A0034A403 /* FiltersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListView.swift; sourceTree = "<group>"; };
-		4411D13A27653DDC0034A403 /* Category+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Category+Hashable.swift"; sourceTree = "<group>"; };
+		4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectableCategory+Hashable.swift"; sourceTree = "<group>"; };
 		442319712763F0BB00268B74 /* AdsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListSection.swift; sourceTree = "<group>"; };
 		442319732763F12200268B74 /* AdComplete+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdComplete+Hashable.swift"; sourceTree = "<group>"; };
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
-		44B3BCBD2764F60D0065548B /* AdsListDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListDelegate.swift; sourceTree = "<group>"; };
+		44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionDelegate.swift; sourceTree = "<group>"; };
 		44B3BCBF2764FBC30065548B /* SelectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionProvider.swift; sourceTree = "<group>"; };
 		44C60551275E7EA9002E4626 /* LeboncoinAds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeboncoinAds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60554275E7EA9002E4626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,19 +110,19 @@
 			children = (
 				4411D1342765333A0034A403 /* FiltersListViewController.swift */,
 				4411D13827653C6A0034A403 /* FiltersListView.swift */,
-				4411D13A27653DDC0034A403 /* Category+Hashable.swift */,
+				4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */,
 				4411D136276534FF0034A403 /* FilterProvider.swift */,
 			);
 			path = FiltersList;
 			sourceTree = "<group>";
 		};
-		44B3BCC1276501170065548B /* Protocols */ = {
+		4411D13E276550310034A403 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */,
 				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
-				44C6059527623FDA002E4626 /* AdsProvider.swift */,
 			);
-			path = Protocols;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		44B3BCC2276501530065548B /* DataSource */ = {
@@ -159,6 +159,7 @@
 		44C60553275E7EA9002E4626 /* LeboncoinAds */ = {
 			isa = PBXGroup;
 			children = (
+				4411D13E276550310034A403 /* Shared */,
 				44C6059427623E24002E4626 /* AdsList */,
 				4411D133276532C70034A403 /* FiltersList */,
 				44C60554275E7EA9002E4626 /* AppDelegate.swift */,
@@ -210,8 +211,7 @@
 				44C6059727625949002E4626 /* AdsListAssembler.swift */,
 				44C60558275E7EA9002E4626 /* AdsListViewController.swift */,
 				447E18EA2763408C00B77F38 /* AdsListView.swift */,
-				44B3BCC1276501170065548B /* Protocols */,
-				44B3BCBD2764F60D0065548B /* AdsListDelegate.swift */,
+				44C6059527623FDA002E4626 /* AdsProvider.swift */,
 				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
 				44B3BCC2276501530065548B /* DataSource */,
 			);
@@ -357,7 +357,7 @@
 				4411D1352765333A0034A403 /* FiltersListViewController.swift in Sources */,
 				44B3BCC02764FBC30065548B /* SelectionProvider.swift in Sources */,
 				44C6059A27625D7D002E4626 /* MockAdsProvider.swift in Sources */,
-				44B3BCBE2764F60D0065548B /* AdsListDelegate.swift in Sources */,
+				44B3BCBE2764F60D0065548B /* ListSelectionDelegate.swift in Sources */,
 				4411D137276534FF0034A403 /* FilterProvider.swift in Sources */,
 				44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */,
 				4411D13927653C6A0034A403 /* FiltersListView.swift in Sources */,
@@ -365,7 +365,7 @@
 				447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */,
 				442319742763F12200268B74 /* AdComplete+Hashable.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
-				4411D13B27653DDC0034A403 /* Category+Hashable.swift in Sources */,
+				4411D13B27653DDC0034A403 /* SelectableCategory+Hashable.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,13 +7,13 @@ final class AdsListViewController: UIViewController {
     private let table = AdsListView()
     private var adsProvider: AdsProvider
     private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
-    private let adsListDelegate: AdsListDelegate
+    private let adsListDelegate: ListSelectionDelegate
     
     private var allAds = [AdComplete]() {
         didSet { updateUI() }
     }
 
-    init(adsProvider: AdsProvider, adsListDelegate: AdsListDelegate) {
+    init(adsProvider: AdsProvider, adsListDelegate: ListSelectionDelegate) {
         self.adsProvider = adsProvider
         self.adsListDelegate = adsListDelegate
         super.init(nibName: nil, bundle: nil)
