@@ -5,13 +5,11 @@ final class AdsListViewController: UIViewController {
     
     private let table = AdsListView()
     private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
-    private var currentSnapshot: NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>?
     private var adsProvider: AdsProvider
     
     private var allAds = [AdComplete]() {
         didSet {
-            print("Received \(allAds.count) new ads")
-            print(allAds)
+            updateUI()
         }
     }
 
@@ -32,6 +30,7 @@ final class AdsListViewController: UIViewController {
         adsProvider.fetchAds()
         configureTable()
         configureDataSource()
+        updateUI(animated: false)
     }
     
     private func handleError(_ error: TextualError) {
@@ -58,17 +57,31 @@ final class AdsListViewController: UIViewController {
             
             guard let self = self else { return nil }
  
-            let cell = tableView.dequeueReusableCell(withIdentifier: self.table.reuseID,for: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: self.table.reuseID, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.price)
             content.secondaryText = itemIdentifier.summary.categoryName
-//            content.image =
+            // TODO: Replace with actual image
+            content.image = UIImage(systemName: "giftcard.fill")
             content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
             cell.accessoryView = itemIdentifier.summary.isUrgent ? UIImageView(image: urgencySymbol) : nil
             cell.contentConfiguration = content
             
             return cell
         }
+    }
+    
+    private func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
+        var newSnapshot = NSDiffableDataSourceSnapshot<AdsListSection, AdComplete>()
+        newSnapshot.appendSections([.main])
+        
+        if let category = selectedCategory {
+            let filtered = allAds.filter { $0.categoryId == category }
+            newSnapshot.appendItems(filtered, toSection: .main)
+        } else {
+            newSnapshot.appendItems(allAds, toSection: .main)
+        }
+        dataSource?.apply(newSnapshot, animatingDifferences: animated)
     }
 }
 
