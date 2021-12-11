@@ -8,19 +8,16 @@ final class AdsListViewController: UIViewController {
     private var adsProvider: AdsProvider
     private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
     private let adsListDelegate: ListSelectionDelegate
-    
+    private var categories = [SelectableCategory]()
     private var allAds = [AdComplete]() {
         didSet { updateUI() }
     }
-
+    
     init(adsProvider: AdsProvider, adsListDelegate: ListSelectionDelegate) {
         self.adsProvider = adsProvider
         self.adsListDelegate = adsListDelegate
         super.init(nibName: nil, bundle: nil)
-        
-        self.adsProvider.adsHandler = { [weak self] in self?.allAds = $0 }
-        self.adsProvider.errorHandler = { [weak self] error in self?.handleError(error) }
-        self.adsListDelegate.selectionHandler = { [weak self] in self?.handleSelectionAt($0) }
+        configureCallbacks()
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +26,7 @@ final class AdsListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setNavigatoinItems()
+        configureNavigationItems()
         table.configure(
             superview: view,
             dataSource: &dataSource,
@@ -39,7 +36,19 @@ final class AdsListViewController: UIViewController {
         adsProvider.fetchAds()
     }
     
-    private func setNavigatoinItems() {
+}
+
+// MARK: - Coonfiguration
+private extension AdsListViewController {
+    
+    func configureCallbacks() {
+        adsProvider.adsHandler = { [weak self] in self?.allAds = $0 }
+        adsProvider.categoriesHandler = { [weak self] in self?.categories = $0 }
+        adsProvider.errorHandler = { [weak self] in self?.handleError($0) }
+        adsListDelegate.selectionHandler = { [weak self] in self?.handleSelectionAt($0) }
+    }
+    
+    func configureNavigationItems() {
         title = "Classified ads"
         navigationController?.navigationBar.prefersLargeTitles = true
         let filterButton = UIBarButtonItem(
@@ -59,7 +68,7 @@ private extension AdsListViewController {
     @objc
     func openFilters() {
         let filtersController = FiltersListAssembler().assembleViewController(
-            categories: []
+            categories: categories
         )
         filtersController.categorySelectionHandler = { print($0) }
         present(filtersController, animated: true)

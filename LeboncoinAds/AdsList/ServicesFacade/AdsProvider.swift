@@ -6,11 +6,17 @@ protocol AdsProvider {
     /// Type used to provide ads info in callback
     typealias AdsInfo = ([AdComplete]) -> ()
     
+    /// Type used to provide categories info in callback
+    typealias CategoriesInfo = ([SelectableCategory]) -> ()
+    
     /// Type used to provide error info in callback
     typealias ErrorInfo = (TextualError) -> ()
     
     /// Callback function used to retrieve ads array from provider
     var adsHandler: AdsInfo? { get set }
+    
+    /// Callback function used to retrieve categories array from provider
+    var categoriesHandler: CategoriesInfo? { get set }
     
     /// Callback function used to retrieve error from provider
     var errorHandler: ErrorInfo? { get set }

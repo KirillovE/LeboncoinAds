@@ -11,6 +11,7 @@ struct MockAdsProvider: AdsProvider {
     private let includeErrors: Bool
     
     var adsHandler: AdsInfo?
+    var categoriesHandler: CategoriesInfo?
     var errorHandler: ErrorInfo?
     
     /// Primary initializer
@@ -40,9 +41,9 @@ struct MockAdsProvider: AdsProvider {
 private extension MockAdsProvider {
     
     func provideAds() {
-        let ads = generateRandomAds(count: Int.random(in: 1...15))
-        print("Generated \(ads.count) ads")
-        adsHandler?(ads)
+        let result = generateRandomAds(count: Int.random(in: 1...15))
+        adsHandler?(result.ads)
+        categoriesHandler?(result.categories)
     }
     
     func provideError() {
@@ -50,10 +51,14 @@ private extension MockAdsProvider {
         errorHandler?(error)
     }
     
-    func generateRandomAds(count: Int) -> [AdComplete] {
-        (0...count).map { digit in
+    func generateRandomAds(count: Int) -> (ads: [AdComplete], categories: [SelectableCategory]) {
+        let categories = (0...count).map { digit in
+            SelectableCategory(id: digit, name: "Category #\(digit)")
+        }
+        
+        let ads = (0...count).map { digit -> AdComplete in
             let title = "Classified ad #\(digit)"
-            let category = "Category #\(digit)"
+            let category = categories[digit].name
             let price = Double(digit) * 7
             let priceRepresentation = "\(price) $"
             let isUrgent = Bool.random()
@@ -81,6 +86,8 @@ private extension MockAdsProvider {
                 details: details
             )
         }
+        
+        return (ads: ads, categories: categories)
     }
 
 }
