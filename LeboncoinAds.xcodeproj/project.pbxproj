@@ -119,6 +119,10 @@
 		4411D13E276550310034A403 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				44C60554275E7EA9002E4626 /* AppDelegate.swift */,
+				44C60556275E7EA9002E4626 /* SceneDelegate.swift */,
+				44C6055D275E7EAA002E4626 /* Assets.xcassets */,
+				44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */,
 				44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */,
 				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
 			);
@@ -162,10 +166,6 @@
 				4411D13E276550310034A403 /* Shared */,
 				44C6059427623E24002E4626 /* AdsList */,
 				4411D133276532C70034A403 /* FiltersList */,
-				44C60554275E7EA9002E4626 /* AppDelegate.swift */,
-				44C60556275E7EA9002E4626 /* SceneDelegate.swift */,
-				44C6055D275E7EAA002E4626 /* Assets.xcassets */,
-				44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */,
 				44C60562275E7EAA002E4626 /* Info.plist */,
 			);
 			path = LeboncoinAds;
