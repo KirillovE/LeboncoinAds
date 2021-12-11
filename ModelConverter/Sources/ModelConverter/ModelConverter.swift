@@ -11,10 +11,19 @@ public struct ModelConverter {
 
     public init() { }
     
-    public func convert(_ rawAds: [ClassifiedAd], using categories: [Models.Category]) -> [AdComplete] {
+    public func convert(
+        _ rawAds: [ClassifiedAd],
+        using categories: [Models.Category]
+    ) -> [AdComplete] {
         let fasterCategories = convertToDict(categories)
         return rawAds.compactMap { singleAd in
             convertSingle(singleAd, using: fasterCategories)
+        }
+    }
+    
+    public func convert(_ rawCategories: [Models.Category]) -> [SelectableCategory] {
+        rawCategories.map {
+            SelectableCategory(id: $0.id, name: $0.name)
         }
     }
 }
