@@ -26,7 +26,7 @@ struct MockAdsProvider: AdsProvider {
     }
     
     func fetchAds() {
-        DispatchQueue.concurrentPerform(iterations: responsesCount) { iteration in
+        (0...responsesCount).forEach { iteration in
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(iteration)) {
                 includeErrors && Bool.random()
                 ? provideError()

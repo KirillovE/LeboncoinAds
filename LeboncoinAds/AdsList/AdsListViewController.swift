@@ -62,7 +62,8 @@ final class AdsListViewController: UIViewController {
             content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.price)
             content.secondaryText = itemIdentifier.summary.categoryName
             // TODO: Replace with actual image
-            content.image = UIImage(systemName: "giftcard.fill")
+            content.image = UIImage(named: "Placeholder")
+            content.imageProperties.maximumSize = .init(width: 50, height: 50)
             content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
             cell.accessoryView = itemIdentifier.summary.isUrgent ? UIImageView(image: urgencySymbol) : nil
             cell.contentConfiguration = content
