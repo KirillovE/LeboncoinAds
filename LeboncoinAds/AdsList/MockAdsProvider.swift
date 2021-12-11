@@ -1,4 +1,5 @@
 import Models
+import Foundation
 
 struct MockAdsProvider: AdsProvider {
     
@@ -13,9 +14,11 @@ struct MockAdsProvider: AdsProvider {
     }
     
     func fetchAds() {
-        Bool.random()
-        ? provideAds()
-        : provideError()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            Bool.random()
+            ? provideAds()
+            : provideError()
+        }
     }
     
 }
