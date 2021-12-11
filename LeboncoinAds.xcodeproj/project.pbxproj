@@ -110,8 +110,8 @@
 		4411D133276532C70034A403 /* FiltersList */ = {
 			isa = PBXGroup;
 			children = (
-				4411D1342765333A0034A403 /* FiltersListViewController.swift */,
 				4411D14027655E070034A403 /* FiltersListAssembler.swift */,
+				4411D1342765333A0034A403 /* FiltersListViewController.swift */,
 				4411D13827653C6A0034A403 /* FiltersListView.swift */,
 				4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */,
 				4411D136276534FF0034A403 /* FilterProvider.swift */,

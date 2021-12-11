@@ -58,7 +58,11 @@ private extension AdsListViewController {
     
     @objc
     func openFilters() {
-        print("Open it!")
+        let filtersController = FiltersListAssembler().assembleViewController(
+            categories: []
+        )
+        filtersController.categorySelectionHandler = { print($0) }
+        present(filtersController, animated: true)
     }
     
     func updateUI(selectedCategory: Int? = nil, animated: Bool = true) {
