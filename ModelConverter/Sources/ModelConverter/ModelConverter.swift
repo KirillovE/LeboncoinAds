@@ -1,6 +1,7 @@
 import Models
 import Foundation
 
+/// Object that converts data from raw to view model
 public struct ModelConverter {
     
     private let numberFormatter: NumberFormatter = {
@@ -11,16 +12,25 @@ public struct ModelConverter {
 
     public init() { }
     
+    /// Converts raw ads to view models sorting them in ascending order by date of creation
+    /// - Parameters:
+    ///   - rawAds: Raw ads array
+    ///   - categories: Raw categories
+    /// - Returns: Ads view models
     public func convert(
         _ rawAds: [ClassifiedAd],
         using categories: [Models.Category]
     ) -> [AdComplete] {
         let fasterCategories = convertToDict(categories)
-        return rawAds.compactMap { singleAd in
+        let converted = rawAds.compactMap { singleAd in
             convertSingle(singleAd, using: fasterCategories)
         }
+        return sortedByDate(converted)
     }
     
+    /// Converts raw categories to view models
+    /// - Parameter rawCategories: Raw categories array
+    /// - Returns: Categories view models
     public func convert(_ rawCategories: [Models.Category]) -> [SelectableCategory] {
         rawCategories.map {
             SelectableCategory(id: $0.id, name: $0.name)
@@ -67,5 +77,11 @@ extension ModelConverter {
             summary: summary,
             details: details
         )
+    }
+    
+    func sortedByDate(_ ads: [AdComplete]) -> [AdComplete] {
+        ads.sorted { left, right in
+            left.details.creationDate < right.details.creationDate
+        }
     }
 }

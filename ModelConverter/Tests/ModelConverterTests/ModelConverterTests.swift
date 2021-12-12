@@ -63,6 +63,19 @@ final class ModelConverterTests: XCTestCase {
         XCTAssertEqual(converted.count, ads.count)
     }
     
+    func testSortingAds() {
+        let categories = [0: ""]
+        let earlyAd = makeAd(withcategoryID: 0, andDate: "2021-12-10")
+        let lateAd = makeAd(withcategoryID: 0, andDate: "2021-12-12")
+        let ads = [lateAd, earlyAd]
+        let converted = ads.map { converter.convertSingle($0, using: categories)! }
+        let sorted = converter.sortedByDate(converted)
+        
+        XCTAssertEqual(sorted[0].details.creationDate, earlyAd.creationDate)
+        XCTAssertEqual(sorted[1].details.creationDate, lateAd.creationDate)
+        XCTAssertLessThan(sorted[0].details.creationDate, sorted[1].details.creationDate)
+    }
+    
     func testPartialAdsConversion() {
         let ads = (0...1).map(makeAd)
         let categories: [Models.Category] = [
@@ -84,10 +97,17 @@ final class ModelConverterTests: XCTestCase {
     }
     
     private func makeAd(withCategoryID id: Int) -> ClassifiedAd {
+        makeAd(withcategoryID: id, andDate: "")
+    }
+    
+    private func makeAd(
+        withcategoryID id: Int,
+        andDate date: String
+    ) -> ClassifiedAd {
         .init(
             id: 0,
             categoryId: id,
-            creationDate: "",
+            creationDate: date,
             title: "",
             description: "",
             isUrgent: true,
