@@ -24,6 +24,9 @@ public struct AdDetails {
     
     /// Current price of ad in needed format
     public let priceRepresentation: String
+    
+    /// Array of texts to enumerate properties
+    public let textFields: [String]
 
     public init(
         id: Int,
@@ -43,6 +46,17 @@ public struct AdDetails {
         self.isUrgent = isUrgent
         self.imageAddress = imageAddress
         self.priceRepresentation = priceRepresentation
+        
+        var fields = [
+            title,
+            priceRepresentation,
+            categoryName,
+            description
+        ]
+        if isUrgent {
+            fields.insert("Urgent", at: 2)
+        }
+        self.textFields = fields
     }
     
 }

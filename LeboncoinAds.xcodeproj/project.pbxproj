@@ -154,8 +154,8 @@
 		4411D14227664D8F0034A403 /* Details */ = {
 			isa = PBXGroup;
 			children = (
-				4411D14327664DAF0034A403 /* DetailsViewController.swift */,
 				4411D14B276693680034A403 /* DetailsAssembler.swift */,
+				4411D14327664DAF0034A403 /* DetailsViewController.swift */,
 				4411D147276669B70034A403 /* DetailsView.swift */,
 				4411D14927666BF90034A403 /* AdDetails+Hashable.swift */,
 				4411D14527664ECF0034A403 /* DetailsSection.swift */,
