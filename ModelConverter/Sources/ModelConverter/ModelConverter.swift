@@ -61,6 +61,7 @@ extension ModelConverter {
         )
 
         let details = AdDetails(
+            id: ad.id,
             title: ad.title,
             description: ad.description,
             categoryName: categoryName,

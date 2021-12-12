@@ -70,6 +70,7 @@ private extension MockAdsProvider {
                 priceRepresentation: priceRepresentation
             )
             let details = AdDetails(
+                id: digit,
                 title: title,
                 description: "Description #\(digit)",
                 categoryName: category,

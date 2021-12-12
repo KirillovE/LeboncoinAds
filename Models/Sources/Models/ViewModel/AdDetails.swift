@@ -1,6 +1,9 @@
 /// Detailed info about classified ad
 public struct AdDetails {
     
+    /// Ad's unique identifier
+    public let id: Int
+    
     /// Short title of ad
     public let title: String
     
@@ -23,6 +26,7 @@ public struct AdDetails {
     public let priceRepresentation: String
 
     public init(
+        id: Int,
         title: String,
         description: String,
         categoryName: String,
@@ -31,6 +35,7 @@ public struct AdDetails {
         imageAddress: String,
         priceRepresentation: String
     ) {
+        self.id = id
         self.title = title
         self.description = description
         self.categoryName = categoryName
