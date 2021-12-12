@@ -96,13 +96,35 @@ final class ModelConverterTests: XCTestCase {
         XCTAssertTrue(converted.isEmpty)
     }
     
-    private func makeAd(withCategoryID id: Int) -> ClassifiedAd {
-        makeAd(withcategoryID: id, andDate: "")
+    func testUrgentFieldsFilling() {
+        let categories = [0: ""]
+        let urgentAd = makeAd(withCategoryID: 0, urgent: true)
+        let converted = converter.convertSingle(urgentAd, using: categories)
+        XCTAssertEqual(converted?.details.textFields.count, 5)
     }
     
-    private func makeAd(
+    func testNonrgentFieldsFilling() {
+        let categories = [0: ""]
+        let nonurgentAd = makeAd(withCategoryID: 0, urgent: false)
+        let converted = converter.convertSingle(nonurgentAd, using: categories)
+        XCTAssertEqual(converted?.details.textFields.count, 4)
+    }
+}
+
+private extension ModelConverterTests {
+    
+    func makeAd(withCategoryID id: Int) -> ClassifiedAd {
+        makeAd(withcategoryID: id, andDate: "", urgent: true)
+    }
+    
+    func makeAd(withCategoryID id: Int, urgent: Bool) -> ClassifiedAd {
+        makeAd(withcategoryID: id, andDate: "", urgent: urgent)
+    }
+    
+    func makeAd(
         withcategoryID id: Int,
-        andDate date: String
+        andDate date: String,
+        urgent: Bool = true
     ) -> ClassifiedAd {
         .init(
             id: 0,
@@ -110,9 +132,10 @@ final class ModelConverterTests: XCTestCase {
             creationDate: date,
             title: "",
             description: "",
-            isUrgent: true,
+            isUrgent: urgent,
             imagesUrl: .init(small: "", thumb: ""),
             price: 0
         )
     }
+    
 }
