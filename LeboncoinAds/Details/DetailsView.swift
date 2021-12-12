@@ -2,6 +2,8 @@ import UIKit
 import Models
 
 final class DetailsView: UICollectionView {
+    private var data: AdDetails?
+    
     init() {
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
     }
@@ -11,10 +13,12 @@ final class DetailsView: UICollectionView {
     }
     
     func configure(
+        data: AdDetails,
         superview: UIView,
         dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?,
         delegate: UICollectionViewDelegate?
     ) {
+        self.data = data
         placeOnView(superview)
         setupDataSource(&dataSource)
         self.delegate = delegate
@@ -64,26 +68,49 @@ private extension DetailsView {
     func setupDataSource(
         _ dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
     ) {
-//        let urgencySymbol = UIImage(systemName: "seal.fill")
-//
-//        dataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?(tableView: self) {
-//            [weak self] tableView, indexPath, itemIdentifier in
-//
-//            guard let self = self else { return nil }
-//
-//            let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseID, for: indexPath)
-//            var content = cell.defaultContentConfiguration()
-//            content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
-//            content.secondaryText = itemIdentifier.summary.categoryName
-//            // TODO: Replace with actual image
-//            content.image = UIImage(named: "Placeholder")
-//            content.imageProperties.maximumSize = .init(width: 50, height: 50)
-//            content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
-//            cell.accessoryView = itemIdentifier.summary.isUrgent ? UIImageView(image: urgencySymbol) : nil
-//            cell.contentConfiguration = content
-//
-//            return cell
-//        }
+        
+        let mainInfoCellRegistration = UICollectionView
+            .CellRegistration<UICollectionViewListCell, AdDetails> { (cell, indexPath, identifier) in
+                var content = cell.defaultContentConfiguration()
+                let text = "\(identifier.title) \n\(identifier.priceRepresentation)"
+                content.text = identifier.isUrgent ? (text + " - urgent") : text
+                content.secondaryText = "\(identifier.categoryName) \n\(identifier.creationDate)"
+                cell.contentConfiguration = content
+        }
+
+        let descriptionCellRegistration = UICollectionView
+            .CellRegistration<UICollectionViewListCell, AdDetails> { (cell, indexPath, identifier) in
+                
+                var content = cell.defaultContentConfiguration()
+                content.text = identifier.description
+                cell.contentConfiguration = content
+            }
+
+        dataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails>(collectionView: self) {
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: AdDetails) -> UICollectionViewCell? in
+            
+            guard let sectionInfo = DetailsSection(rawValue: indexPath.section) else { return nil }
+            
+            let cell = (sectionInfo == .mainInfo)
+            ? collectionView.dequeueConfiguredReusableCell(
+                using: mainInfoCellRegistration,
+                for: indexPath,
+                item: identifier
+            )
+            : collectionView.dequeueConfiguredReusableCell(
+                using: descriptionCellRegistration,
+                for: indexPath,
+                item: identifier
+            )
+            return cell
+        }
+
+        let actualData = data.map { [$0] } ?? []
+        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails>()
+        snapshot.appendSections(DetailsSection.allCases)
+        snapshot.appendItems(actualData, toSection: .mainInfo)
+        snapshot.appendItems(actualData, toSection: .description)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
 }
