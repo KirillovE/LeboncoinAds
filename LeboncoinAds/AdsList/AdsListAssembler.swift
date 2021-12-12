@@ -9,8 +9,7 @@ struct AdsListAssembler {
         let mode = AssemblyMode.mockSuccess
         let adsProvider = mode.adsProvider
         let adsDelegate = ListSelectionDelegate()
-        let listController = AdsListViewController(adsProvider: adsProvider, adsListDelegate: adsDelegate)
-        return UINavigationController(rootViewController: listController)
+        return AdsListViewController(adsProvider: adsProvider, adsListDelegate: adsDelegate)
     }
     
 }

@@ -4,7 +4,8 @@ import Models
 struct DetailsAssembler {
     
     func assembleViewController(adDetails: AdDetails?) -> UIViewController {
-        DetailsViewController(data: adDetails)
+        let details = DetailsViewController(data: adDetails)
+        return UINavigationController(rootViewController: details)
     }
     
 }

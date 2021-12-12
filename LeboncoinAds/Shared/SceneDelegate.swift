@@ -25,9 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeSplitController() -> UISplitViewController {
         let controller = UISplitViewController(style: .doubleColumn)
+        
         let adList = AdsListAssembler().assembleViewController()
-        let adDetails = DetailsAssembler().assembleViewController(adDetails: nil)
-        controller.viewControllers = [adList, adDetails]
+        controller.setViewController(adList, for: .primary)
+        
+        controller.show(.primary)
         return controller
     }
 }
