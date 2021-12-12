@@ -14,7 +14,7 @@ final class DetailsView: UICollectionView {
     }
     
     func configure(
-        data: AdDetails,
+        data: AdDetails?,
         superview: UIView
     ) {
         self.data = data

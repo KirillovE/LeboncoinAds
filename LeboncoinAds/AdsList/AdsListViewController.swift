@@ -126,6 +126,6 @@ private extension AdsListViewController {
         }
         
         let detailsController = DetailsAssembler().assembleViewController(adDetails: selectedAd.details)
-        navigationController?.pushViewController(detailsController, animated: true)
+        splitViewController?.showDetailViewController(detailsController, sender: nil)
     }
 }

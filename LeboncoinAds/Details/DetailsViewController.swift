@@ -4,9 +4,9 @@ import Models
 final class DetailsViewController: UIViewController {
 
     private let collection = DetailsView()
-    private let data: AdDetails
+    private let data: AdDetails?
     
-    init(data: AdDetails) {
+    init(data: AdDetails?) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }

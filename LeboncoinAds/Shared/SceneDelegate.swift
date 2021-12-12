@@ -18,8 +18,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = AdsListAssembler().assembleViewController()
+        window.rootViewController = makeSplitController()
         window.makeKeyAndVisible()
         self.window = window
+    }
+    
+    private func makeSplitController() -> UISplitViewController {
+        let controller = UISplitViewController(style: .doubleColumn)
+        let adList = AdsListAssembler().assembleViewController()
+        let adDetails = DetailsAssembler().assembleViewController(adDetails: nil)
+        controller.viewControllers = [adList, adDetails]
+        return controller
     }
 }
