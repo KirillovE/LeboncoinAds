@@ -125,6 +125,7 @@ private extension AdsListViewController {
             return
         }
         
-        print("Need to present ad details:\n\(selectedAd.details)")
+        let detailsController = DetailsAssembler().assembleViewController(adDetails: selectedAd.details)
+        navigationController?.pushViewController(detailsController, animated: true)
     }
 }
