@@ -14,6 +14,8 @@
 		4411D14127655E070034A403 /* FiltersListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14027655E070034A403 /* FiltersListAssembler.swift */; };
 		4411D14427664DAF0034A403 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14327664DAF0034A403 /* DetailsViewController.swift */; };
 		4411D14627664ECF0034A403 /* DetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14527664ECF0034A403 /* DetailsSection.swift */; };
+		4411D148276669B70034A403 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D147276669B70034A403 /* DetailsView.swift */; };
+		4411D14A27666BF90034A403 /* AdDetails+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14927666BF90034A403 /* AdDetails+Hashable.swift */; };
 		442319722763F0BB00268B74 /* AdsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319712763F0BB00268B74 /* AdsListSection.swift */; };
 		442319742763F12200268B74 /* AdComplete+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319732763F12200268B74 /* AdComplete+Hashable.swift */; };
 		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
@@ -59,6 +61,8 @@
 		4411D14027655E070034A403 /* FiltersListAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListAssembler.swift; sourceTree = "<group>"; };
 		4411D14327664DAF0034A403 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4411D14527664ECF0034A403 /* DetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSection.swift; sourceTree = "<group>"; };
+		4411D147276669B70034A403 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		4411D14927666BF90034A403 /* AdDetails+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdDetails+Hashable.swift"; sourceTree = "<group>"; };
 		442319712763F0BB00268B74 /* AdsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListSection.swift; sourceTree = "<group>"; };
 		442319732763F12200268B74 /* AdComplete+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdComplete+Hashable.swift"; sourceTree = "<group>"; };
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				4411D14327664DAF0034A403 /* DetailsViewController.swift */,
+				4411D147276669B70034A403 /* DetailsView.swift */,
+				4411D14927666BF90034A403 /* AdDetails+Hashable.swift */,
 				4411D14527664ECF0034A403 /* DetailsSection.swift */,
 			);
 			path = Details;
@@ -378,6 +384,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				442319722763F0BB00268B74 /* AdsListSection.swift in Sources */,
+				4411D14A27666BF90034A403 /* AdDetails+Hashable.swift in Sources */,
+				4411D148276669B70034A403 /* DetailsView.swift in Sources */,
 				44C60559275E7EA9002E4626 /* AdsListViewController.swift in Sources */,
 				4411D1352765333A0034A403 /* FiltersListViewController.swift in Sources */,
 				44B3BCC02764FBC30065548B /* SelectionProvider.swift in Sources */,
