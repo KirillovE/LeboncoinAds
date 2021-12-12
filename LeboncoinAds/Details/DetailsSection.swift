@@ -12,7 +12,7 @@ enum DetailsSection: Int, CaseIterable {
     /// Column count for different layout widths
     /// - Parameter width: Current section width
     /// - Returns: Column count
-    func columnCount(dor width: CGFloat) -> Int {
+    func columnCount(for width: CGFloat) -> Int {
         let wideMode = width > 800
         
         switch self {
