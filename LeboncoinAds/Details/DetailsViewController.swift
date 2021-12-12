@@ -17,6 +17,7 @@ final class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Details"
         collection.configure(
             data: data,
             superview: view
