@@ -15,13 +15,12 @@ final class DetailsView: UICollectionView {
     func configure(
         data: AdDetails,
         superview: UIView,
-        dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?,
-        delegate: UICollectionViewDelegate?
+        dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
     ) {
         self.data = data
         placeOnView(superview)
         setupDataSource(&dataSource)
-        self.delegate = delegate
+        isUserInteractionEnabled = false
     }
 }
 
