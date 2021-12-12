@@ -4,7 +4,6 @@ import Models
 final class DetailsViewController: UIViewController {
 
     private let collection = DetailsView()
-    private var dataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
     private let data: AdDetails
     
     init(data: AdDetails) {
@@ -20,8 +19,7 @@ final class DetailsViewController: UIViewController {
         super.viewDidLoad()
         collection.configure(
             data: data,
-            superview: view,
-            dataSource: &dataSource
+            superview: view
         )
     }
 

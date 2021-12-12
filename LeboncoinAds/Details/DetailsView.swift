@@ -3,6 +3,7 @@ import Models
 
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
+    private var diffDataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
     
     init() {
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
@@ -14,12 +15,11 @@ final class DetailsView: UICollectionView {
     
     func configure(
         data: AdDetails,
-        superview: UIView,
-        dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
+        superview: UIView
     ) {
         self.data = data
         placeOnView(superview)
-        setupDataSource(&dataSource)
+        setupDataSource()
         isUserInteractionEnabled = false
     }
 }
@@ -65,7 +65,7 @@ private extension DetailsView {
     }
     
     func setupDataSource(
-        _ dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
+//        _ dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
     ) {
         
         let mainInfoCellRegistration = UICollectionView
@@ -85,7 +85,7 @@ private extension DetailsView {
                 cell.contentConfiguration = content
             }
 
-        dataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails>(collectionView: self) {
+        diffDataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails>(collectionView: self) {
             (collectionView: UICollectionView, indexPath: IndexPath, identifier: AdDetails) -> UICollectionViewCell? in
             
             guard let sectionInfo = DetailsSection(rawValue: indexPath.section) else { return nil }
@@ -109,7 +109,7 @@ private extension DetailsView {
         snapshot.appendSections(DetailsSection.allCases)
         snapshot.appendItems(actualData, toSection: .mainInfo)
         snapshot.appendItems(actualData, toSection: .description)
-        dataSource?.apply(snapshot, animatingDifferences: false)
+        diffDataSource?.apply(snapshot, animatingDifferences: false)
     }
 
 }
