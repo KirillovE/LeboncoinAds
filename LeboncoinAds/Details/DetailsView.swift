@@ -3,7 +3,7 @@ import Models
 
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
-    private var diffDataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
+    private var diffDataSource: UICollectionViewDiffableDataSource<Int, String>?
     
     init() {
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
@@ -29,22 +29,22 @@ private extension DetailsView {
     static func createLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-            guard let sectionInfo = DetailsSection(rawValue: sectionIndex) else { return nil }
 
-            let columns = sectionInfo.columnCount(for: layoutEnvironment.container.effectiveContentSize.width)
+            let currentWidth = layoutEnvironment.container.effectiveContentSize.width
+            let columnsCount = currentWidth > 800 ? 2 : 1
 
             let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.2),
+                widthDimension: .fractionalWidth(1.0),
                 heightDimension: .fractionalHeight(1.0)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-            
+
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
+                heightDimension: .estimated(44)
             )
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columns)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnsCount)
 
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
@@ -64,51 +64,26 @@ private extension DetailsView {
         ])
     }
     
-    func setupDataSource(
-//        _ dataSource: inout UICollectionViewDiffableDataSource<DetailsSection, AdDetails>?
-    ) {
-        
-        let mainInfoCellRegistration = UICollectionView
-            .CellRegistration<UICollectionViewListCell, AdDetails> { (cell, indexPath, identifier) in
+    func setupDataSource() {
+        let cellRegistration = UICollectionView
+            .CellRegistration<UICollectionViewListCell, String> { (cell, indexPath, identifier) in
                 var content = cell.defaultContentConfiguration()
-                let text = "\(identifier.title) \n\(identifier.priceRepresentation)"
-                content.text = identifier.isUrgent ? (text + " - urgent") : text
-                content.secondaryText = "\(identifier.categoryName) \n\(identifier.creationDate)"
-                cell.contentConfiguration = content
-        }
-
-        let descriptionCellRegistration = UICollectionView
-            .CellRegistration<UICollectionViewListCell, AdDetails> { (cell, indexPath, identifier) in
-                
-                var content = cell.defaultContentConfiguration()
-                content.text = identifier.description
+                content.text = identifier
                 cell.contentConfiguration = content
             }
 
-        diffDataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: AdDetails) -> UICollectionViewCell? in
-            
-            guard let sectionInfo = DetailsSection(rawValue: indexPath.section) else { return nil }
-            
-            let cell = (sectionInfo == .mainInfo)
-            ? collectionView.dequeueConfiguredReusableCell(
-                using: mainInfoCellRegistration,
+        diffDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
+            (collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionViewCell? in
+            collectionView.dequeueConfiguredReusableCell(
+                using: cellRegistration,
                 for: indexPath,
                 item: identifier
             )
-            : collectionView.dequeueConfiguredReusableCell(
-                using: descriptionCellRegistration,
-                for: indexPath,
-                item: identifier
-            )
-            return cell
         }
 
-        let actualData = data.map { [$0] } ?? []
-        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails>()
-        snapshot.appendSections(DetailsSection.allCases)
-        snapshot.appendItems(actualData, toSection: .mainInfo)
-        snapshot.appendItems(actualData, toSection: .description)
+        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(data?.textFields ?? [])
         diffDataSource?.apply(snapshot, animatingDifferences: false)
     }
 
