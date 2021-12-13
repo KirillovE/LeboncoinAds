@@ -27,11 +27,9 @@ final class AdsListView: UICollectionView {
         self.delegate = delegate
     }
     
-}
-
-private extension AdsListView {
-    
-    var urgencyAccessory: UICellAccessory {
+    /// Custom cell accessory to demonstrate urgency. Trailing placement
+    /// - Returns: Urgency cell accessory
+    static func urgencyAccessory() -> UICellAccessory {
         let urgencySymbol = UIImage(systemName: "seal.fill")
         let urgencyPlacement = UICellAccessory.Placement.trailing(displayed: .always) { _ in 0 }
         let urgencyAccessoryConfig = UICellAccessory.CustomViewConfiguration(
@@ -40,6 +38,10 @@ private extension AdsListView {
         )
         return .customView(configuration: urgencyAccessoryConfig)
     }
+    
+}
+
+private extension AdsListView {
     
     static func createLayout() -> UICollectionViewLayout {
         let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
@@ -61,7 +63,7 @@ private extension AdsListView {
         _ dataSource: inout UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
     ) {
         let cellRegistration = UICollectionView
-            .CellRegistration<UICollectionViewListCell, AdComplete> { [weak self] (cell, indexPath, itemIdentifier) in
+            .CellRegistration<UICollectionViewListCell, AdComplete> { cell, indexPath, itemIdentifier in
                 
                 var content = UIListContentConfiguration.cell()
                 content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
@@ -72,8 +74,8 @@ private extension AdsListView {
                 content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
                 
                 cell.accessories = [.disclosureIndicator()]
-                if itemIdentifier.summary.isUrgent, let urgency = self?.urgencyAccessory {
-                    cell.accessories.append(urgency)
+                if itemIdentifier.summary.isUrgent {
+                    cell.accessories.append(AdsListView.urgencyAccessory())
                 }
                 cell.contentConfiguration = content
                 
