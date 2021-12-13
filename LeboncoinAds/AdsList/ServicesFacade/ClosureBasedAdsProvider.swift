@@ -69,7 +69,9 @@ private extension ClosureBasedAdsProvider {
     
     func convertCategories(_ rawCategories: [Models.Category]) {
         let categoryModels = modelsConverter.convert(rawCategories)
-        categoriesHandler?(categoryModels)
+        DispatchQueue.main.async {
+            self.categoriesHandler?(categoryModels)
+        }
     }
     
     func handleErrorOnMain(_ error: TextualError) {
