@@ -10,7 +10,6 @@
 		4411D1352765333A0034A403 /* FiltersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D1342765333A0034A403 /* FiltersListViewController.swift */; };
 		4411D137276534FF0034A403 /* FilterProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D136276534FF0034A403 /* FilterProvider.swift */; };
 		4411D13927653C6A0034A403 /* FiltersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D13827653C6A0034A403 /* FiltersListView.swift */; };
-		4411D13B27653DDC0034A403 /* SelectableCategory+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */; };
 		4411D14127655E070034A403 /* FiltersListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14027655E070034A403 /* FiltersListAssembler.swift */; };
 		4411D14427664DAF0034A403 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14327664DAF0034A403 /* DetailsViewController.swift */; };
 		4411D148276669B70034A403 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D147276669B70034A403 /* DetailsView.swift */; };
@@ -56,7 +55,6 @@
 		4411D1342765333A0034A403 /* FiltersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListViewController.swift; sourceTree = "<group>"; };
 		4411D136276534FF0034A403 /* FilterProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterProvider.swift; sourceTree = "<group>"; };
 		4411D13827653C6A0034A403 /* FiltersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListView.swift; sourceTree = "<group>"; };
-		4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SelectableCategory+Hashable.swift"; sourceTree = "<group>"; };
 		4411D14027655E070034A403 /* FiltersListAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersListAssembler.swift; sourceTree = "<group>"; };
 		4411D14327664DAF0034A403 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		4411D147276669B70034A403 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				4411D14027655E070034A403 /* FiltersListAssembler.swift */,
 				4411D1342765333A0034A403 /* FiltersListViewController.swift */,
 				4411D13827653C6A0034A403 /* FiltersListView.swift */,
-				4411D13A27653DDC0034A403 /* SelectableCategory+Hashable.swift */,
 				4411D136276534FF0034A403 /* FilterProvider.swift */,
 			);
 			path = FiltersList;
@@ -389,7 +386,6 @@
 				447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */,
 				4411D14C276693680034A403 /* DetailsAssembler.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
-				4411D13B27653DDC0034A403 /* SelectableCategory+Hashable.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

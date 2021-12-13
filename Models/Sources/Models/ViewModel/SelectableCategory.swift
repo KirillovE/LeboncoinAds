@@ -1,5 +1,5 @@
 /// Category which information about selection state
-public struct SelectableCategory {
+public struct SelectableCategory: Hashable {
     
     /// Identifier to match with ``AdComplete``
     public let id: Int
