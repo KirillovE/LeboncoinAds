@@ -32,7 +32,7 @@ private extension DetailsView {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
             
             let currentWidth = layoutEnvironment.container.effectiveContentSize.width
-            let columnsCount = currentWidth > DetailsSpec.thresholdWidth ? 2 : 1
+            let columnsCount = (currentWidth > DetailsSpec.thresholdWidth) && (sectionIndex == 0) ? 2 : 1
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -40,9 +40,9 @@ private extension DetailsView {
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.edgeSpacing = .init(
-                leading: .fixed(DetailsSpec.insetHorizontal),
+                leading: .fixed(0),
                 top: .fixed(DetailsSpec.insetVertical),
-                trailing: .fixed(DetailsSpec.insetHorizontal),
+                trailing: .fixed(0),
                 bottom: .fixed(DetailsSpec.insetVertical)
             )
             
@@ -51,31 +51,28 @@ private extension DetailsView {
                 heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnsCount)
+            group.interItemSpacing = .fixed(DetailsSpec.insetVertical)
             
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = .init(
                 top: DetailsSpec.insetVertical,
                 leading: DetailsSpec.insetHorizontal,
                 bottom: DetailsSpec.insetVertical,
-                trailing: DetailsSpec.trailingSectionInset
+                trailing: DetailsSpec.insetHorizontal
             )
             
-            let headerSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
-            )
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: Self.sectionHeaderElementKind,
-                alignment: .top
-            )
-            sectionHeader.contentInsets = .init(
-                top: DetailsSpec.insetVertical,
-                leading: .zero,
-                bottom: DetailsSpec.insetVertical,
-                trailing: .zero
-            )
-            section.boundarySupplementaryItems = [sectionHeader]
+            if sectionIndex == 0 {
+                let headerSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
+                )
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerSize,
+                    elementKind: Self.sectionHeaderElementKind,
+                    alignment: .top
+                )
+                section.boundarySupplementaryItems = [sectionHeader]
+            }
             
             return section
         }
@@ -135,8 +132,9 @@ private extension DetailsView {
         }
 
         var snapshot = NSDiffableDataSourceSnapshot<Int, AdDetails.TextField>()
-        snapshot.appendSections([0])
-        snapshot.appendItems(data?.textFields ?? [])
+        snapshot.appendSections([0, 1])
+        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: 0)
+        data?.textFields.last.map { snapshot.appendItems([$0], toSection: 1) }
         diffDataSource?.apply(snapshot, animatingDifferences: false)
     }
 
