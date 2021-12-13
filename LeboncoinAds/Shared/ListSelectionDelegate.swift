@@ -1,6 +1,6 @@
 import UIKit
 
-/// Simplified table view delegate object that provides inderection for common operations
+/// Simplified delegate object that provides inderection for common operations
 ///
 /// It is convenient to use this object to extract common logic from View Controller or View
 final class ListSelectionDelegate: NSObject, SelectionProvider {
