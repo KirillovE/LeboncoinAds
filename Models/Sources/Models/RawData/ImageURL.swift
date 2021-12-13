@@ -2,8 +2,8 @@
 public struct ImageURL: Decodable {
     
     /// Smaller image address
-    public let small: String
+    public let small: String?
     
     /// Bigger image address
-    public let thumb: String
+    public let thumb: String?
 }

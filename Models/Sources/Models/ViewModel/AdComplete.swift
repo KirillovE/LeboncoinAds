@@ -60,8 +60,8 @@ extension AdComplete: CustomDebugStringConvertible {
         price: \(summary.priceRepresentation)
         is urgent: \(summary.isUrgent)
         created: \(details.creationDate)
-        image small: \(summary.imageAddress)
-        image big: \(details.imageAddress)
+        image small: \(summary.imageAddress ?? "missing")
+        image big: \(details.imageAddress ?? "missing")
         ===
         """
     }

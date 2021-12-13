@@ -20,7 +20,7 @@ public struct AdDetails {
     public let isUrgent: Bool
     
     /// Address of full resolution image
-    public let imageAddress: String
+    public let imageAddress: String?
     
     /// Current price of ad in needed format
     public let priceRepresentation: String
@@ -35,7 +35,7 @@ public struct AdDetails {
         categoryName: String,
         creationDate: String,
         isUrgent: Bool,
-        imageAddress: String,
+        imageAddress: String?,
         priceRepresentation: String
     ) {
         self.id = id

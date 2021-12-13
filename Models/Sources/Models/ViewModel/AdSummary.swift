@@ -11,7 +11,7 @@ public struct AdSummary {
     public let isUrgent: Bool
     
     /// Address of small image
-    public let imageAddress: String
+    public let imageAddress: String?
     
     /// Current price of ad in needed format
     public let priceRepresentation: String
@@ -20,7 +20,7 @@ public struct AdSummary {
         title: String,
         categoryName: String,
         isUrgent: Bool,
-        imageAddress: String,
+        imageAddress: String?,
         priceRepresentation: String
     ) {
         self.title = title

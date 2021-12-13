@@ -40,7 +40,7 @@ struct NetworkHandler {
             
             guard
                 let mimeType = httpResponse.mimeType,
-                mimeType == "application/json",
+                mimeType == "text/plain",
                 let loadedData = data
             else {
                 completion(.failure("Invalid response format"))
