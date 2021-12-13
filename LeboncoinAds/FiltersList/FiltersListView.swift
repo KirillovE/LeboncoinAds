@@ -61,6 +61,7 @@ private extension FiltersListView {
             let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath)
             var content = cell.defaultContentConfiguration()
             content.text = itemIdentifier.name
+            content.image = .init(systemName: "arrowtriangle.right.fill")
             cell.accessoryType = itemIdentifier.isSelected ? .checkmark : .none
             cell.contentConfiguration = content
             

@@ -3,7 +3,7 @@ import Models
 
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
-    private var diffDataSource: UICollectionViewDiffableDataSource<Int, String>?
+    private var diffDataSource: UICollectionViewDiffableDataSource<Int, AdDetails.TextField>?
     
     init() {
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
@@ -70,9 +70,10 @@ private extension DetailsView {
     
     func setupDataSource() {
         let cellRegistration = UICollectionView
-            .CellRegistration<UICollectionViewListCell, String> { (cell, indexPath, identifier) in
+            .CellRegistration<UICollectionViewListCell, AdDetails.TextField> { cell, indexPath, identifier in
                 var content = cell.defaultContentConfiguration()
-                content.text = identifier
+                content.text = identifier.text
+                content.image = .init(systemName: identifier.systemImageName)
                 cell.contentConfiguration = content
                 
                 var background = UIBackgroundConfiguration.listGroupedCell()
@@ -81,8 +82,8 @@ private extension DetailsView {
                 cell.backgroundConfiguration = background
             }
 
-        diffDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
-            (collectionView: UICollectionView, indexPath: IndexPath, identifier: String) -> UICollectionViewCell? in
+        diffDataSource = UICollectionViewDiffableDataSource<Int, AdDetails.TextField>(collectionView: self) {
+            collectionView, indexPath, identifier -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration,
                 for: indexPath,
@@ -90,7 +91,7 @@ private extension DetailsView {
             )
         }
 
-        var snapshot = NSDiffableDataSourceSnapshot<Int, String>()
+        var snapshot = NSDiffableDataSourceSnapshot<Int, AdDetails.TextField>()
         snapshot.appendSections([0])
         snapshot.appendItems(data?.textFields ?? [])
         diffDataSource?.apply(snapshot, animatingDifferences: false)

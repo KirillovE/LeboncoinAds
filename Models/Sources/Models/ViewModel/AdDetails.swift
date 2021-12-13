@@ -25,8 +25,8 @@ public struct AdDetails {
     /// Current price of ad in needed format
     public let priceRepresentation: String
     
-    /// Array of texts to enumerate properties
-    public let textFields: [String]
+    /// Array of texts to enumerate properties with accompanying system images
+    public let textFields: [TextField]
 
     public init(
         id: Int,
@@ -47,16 +47,23 @@ public struct AdDetails {
         self.imageAddress = imageAddress
         self.priceRepresentation = priceRepresentation
         
-        var fields = [
-            title,
-            priceRepresentation,
-            categoryName,
-            description
+        var fields: [TextField] = [
+            .init(systemImageName: "character.cursor.ibeam", text: title),
+            .init(systemImageName: "eurosign.square", text: priceRepresentation),
+            .init(systemImageName: "list.triangle", text: categoryName),
+            .init(systemImageName: "doc.plaintext", text: description)
         ]
         if isUrgent {
-            fields.insert("Urgent", at: 2)
+            fields.insert(.init(systemImageName: "seal", text: "Urgent"), at: 2)
         }
         self.textFields = fields
     }
     
+}
+
+extension AdDetails {
+    public struct TextField: Hashable {
+        public let systemImageName: String
+        public let text: String
+    }
 }
