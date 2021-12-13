@@ -15,6 +15,8 @@
 		4411D148276669B70034A403 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D147276669B70034A403 /* DetailsView.swift */; };
 		4411D14C276693680034A403 /* DetailsAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14B276693680034A403 /* DetailsAssembler.swift */; };
 		4411D14E2766A5390034A403 /* DetailsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D14D2766A5390034A403 /* DetailsSpec.swift */; };
+		4411D15227679ECC0034A403 /* ClosureBasedAdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */; };
+		4411D1542767A1620034A403 /* AdsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D1532767A1620034A403 /* AdsAPIService.swift */; };
 		442319722763F0BB00268B74 /* AdsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319712763F0BB00268B74 /* AdsListSection.swift */; };
 		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
 		44B3BCBE2764F60D0065548B /* ListSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */; };
@@ -60,6 +62,8 @@
 		4411D147276669B70034A403 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		4411D14B276693680034A403 /* DetailsAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAssembler.swift; sourceTree = "<group>"; };
 		4411D14D2766A5390034A403 /* DetailsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsSpec.swift; sourceTree = "<group>"; };
+		4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureBasedAdsProvider.swift; sourceTree = "<group>"; };
+		4411D1532767A1620034A403 /* AdsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsAPIService.swift; sourceTree = "<group>"; };
 		442319712763F0BB00268B74 /* AdsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListSection.swift; sourceTree = "<group>"; };
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
 		44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				44C6059527623FDA002E4626 /* AdsProvider.swift */,
+				4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */,
+				4411D1532767A1620034A403 /* AdsAPIService.swift */,
 				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
 			);
 			path = ServicesFacade;
@@ -370,6 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442319722763F0BB00268B74 /* AdsListSection.swift in Sources */,
+				4411D15227679ECC0034A403 /* ClosureBasedAdsProvider.swift in Sources */,
 				4411D148276669B70034A403 /* DetailsView.swift in Sources */,
 				44C60559275E7EA9002E4626 /* AdsListViewController.swift in Sources */,
 				4411D1352765333A0034A403 /* FiltersListViewController.swift in Sources */,
@@ -385,6 +392,7 @@
 				44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */,
 				447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */,
 				4411D14C276693680034A403 /* DetailsAssembler.swift in Sources */,
+				4411D1542767A1620034A403 /* AdsAPIService.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
 			);
