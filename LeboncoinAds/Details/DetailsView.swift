@@ -36,14 +36,14 @@ private extension DetailsView {
             
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .fractionalHeight(1.0)
+                heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = .init(
-                top: DetailsSpec.itemIsetVertical,
-                leading: DetailsSpec.itemIsetHorizontal,
-                bottom: DetailsSpec.itemIsetVertical,
-                trailing: DetailsSpec.itemIsetHorizontal
+            item.edgeSpacing = .init(
+                leading: .fixed(DetailsSpec.insetHorizontal),
+                top: .fixed(DetailsSpec.insetVertical),
+                trailing: .fixed(DetailsSpec.insetHorizontal),
+                bottom: .fixed(DetailsSpec.insetVertical)
             )
             
             let groupSize = NSCollectionLayoutSize(
@@ -53,6 +53,12 @@ private extension DetailsView {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnsCount)
             
             let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = .init(
+                top: DetailsSpec.insetVertical,
+                leading: DetailsSpec.insetHorizontal,
+                bottom: DetailsSpec.insetVertical,
+                trailing: DetailsSpec.trailingSectionInset
+            )
             
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -64,9 +70,9 @@ private extension DetailsView {
                 alignment: .top
             )
             sectionHeader.contentInsets = .init(
-                top: DetailsSpec.itemIsetVertical,
+                top: DetailsSpec.insetVertical,
                 leading: .zero,
-                bottom: DetailsSpec.itemIsetVertical,
+                bottom: DetailsSpec.insetVertical,
                 trailing: .zero
             )
             section.boundarySupplementaryItems = [sectionHeader]
