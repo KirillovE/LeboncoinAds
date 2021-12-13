@@ -34,6 +34,7 @@
 		44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059527623FDA002E4626 /* AdsProvider.swift */; };
 		44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059727625949002E4626 /* AdsListAssembler.swift */; };
 		44C6059A27625D7D002E4626 /* MockAdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059927625D7D002E4626 /* MockAdsProvider.swift */; };
+		44F8F37A2767B87E0043E07E /* ModelsConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F3792767B87E0043E07E /* ModelsConverterService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		44C6059527623FDA002E4626 /* AdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsProvider.swift; sourceTree = "<group>"; };
 		44C6059727625949002E4626 /* AdsListAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListAssembler.swift; sourceTree = "<group>"; };
 		44C6059927625D7D002E4626 /* MockAdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdsProvider.swift; sourceTree = "<group>"; };
+		44F8F3792767B87E0043E07E /* ModelsConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsConverterService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +147,7 @@
 				44C6059527623FDA002E4626 /* AdsProvider.swift */,
 				4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */,
 				4411D1532767A1620034A403 /* AdsAPIService.swift */,
+				44F8F3792767B87E0043E07E /* ModelsConverterService.swift */,
 				44C6059927625D7D002E4626 /* MockAdsProvider.swift */,
 			);
 			path = ServicesFacade;
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442319722763F0BB00268B74 /* AdsListSection.swift in Sources */,
+				44F8F37A2767B87E0043E07E /* ModelsConverterService.swift in Sources */,
 				4411D15227679ECC0034A403 /* ClosureBasedAdsProvider.swift in Sources */,
 				4411D148276669B70034A403 /* DetailsView.swift in Sources */,
 				44C60559275E7EA9002E4626 /* AdsListViewController.swift in Sources */,

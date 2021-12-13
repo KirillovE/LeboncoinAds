@@ -7,13 +7,18 @@ import Models
 struct ClosureBasedAdsProvider: AdsProvider {
     
     private let adsLoader: AdsAPIService
+    private let modelsConverter: ModelsConverterService
     
     var adsHandler: AdsInfo?
     var categoriesHandler: CategoriesInfo?
     var errorHandler: ErrorInfo?
     
-    init(adsLoader: AdsAPIService) {
+    init(
+        adsLoader: AdsAPIService,
+        modelsConverter: ModelsConverterService
+    ) {
         self.adsLoader = adsLoader
+        self.modelsConverter = modelsConverter
     }
     
     func fetchAds() {
