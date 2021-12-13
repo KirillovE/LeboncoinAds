@@ -1,4 +1,6 @@
 import UIKit
+import AdsLoader
+import ModelConverter
 
 /// Assembles classified ads list with needed parameters
 struct AdsListAssembler {
@@ -6,7 +8,7 @@ struct AdsListAssembler {
     /// Assembles view controller using needed parameters
     /// - Returns: Assembled view controller
     func assembleViewController() -> UIViewController {
-        let mode = AssemblyMode.mockSuccess
+        let mode = AssemblyMode.live
         let adsProvider = mode.adsProvider
         let adsDelegate = ListSelectionDelegate()
         return AdsListViewController(adsProvider: adsProvider, adsListDelegate: adsDelegate)
@@ -25,7 +27,10 @@ private extension AdsListAssembler {
         var adsProvider: AdsProvider {
             switch self {
             case .live:
-                fatalError("Live ads provider not yet implemented")
+                return ClosureBasedAdsProvider(
+                    adsLoader: AdsLoader(),
+                    modelsConverter: ModelConverter()
+                )
             case .mockSuccess:
                 return MockAdsProvider(responsesCount: 1)
             case .animationDemo:
