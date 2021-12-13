@@ -76,6 +76,9 @@ private extension AdsListView {
                     cell.accessories.append(urgency)
                 }
                 cell.contentConfiguration = content
+                
+                let background = UIBackgroundConfiguration.listGroupedCell()
+                cell.backgroundConfiguration = background
             }
         
         dataSource = UICollectionViewDiffableDataSource<AdsListSection, AdComplete>(

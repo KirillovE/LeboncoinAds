@@ -20,7 +20,7 @@ final class DetailsView: UICollectionView {
         self.data = data
         placeOnView(superview)
         setupDataSource()
-        isUserInteractionEnabled = false
+        allowsSelection = false
     }
 }
 
@@ -38,6 +38,12 @@ private extension DetailsView {
                 heightDimension: .fractionalHeight(1.0)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets = .init(
+                top: DetailsSpec.itemIsetVertical,
+                leading: DetailsSpec.itemIsetHorizontal,
+                bottom: DetailsSpec.itemIsetVertical,
+                trailing: DetailsSpec.itemIsetHorizontal
+            )
 
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
@@ -68,6 +74,11 @@ private extension DetailsView {
                 var content = cell.defaultContentConfiguration()
                 content.text = identifier
                 cell.contentConfiguration = content
+                
+                var background = UIBackgroundConfiguration.listGroupedCell()
+                background.cornerRadius = DetailsSpec.cornerRadius
+                background.backgroundColor = .secondarySystemBackground
+                cell.backgroundConfiguration = background
             }
 
         diffDataSource = UICollectionViewDiffableDataSource<Int, String>(collectionView: self) {
