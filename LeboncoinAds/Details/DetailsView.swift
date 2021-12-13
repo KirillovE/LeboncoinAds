@@ -27,12 +27,12 @@ final class DetailsView: UICollectionView {
 private extension DetailsView {
     
     static func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout {
             (sectionIndex: Int, layoutEnvironment: NSCollectionLayoutEnvironment) -> NSCollectionLayoutSection? in
-
+            
             let currentWidth = layoutEnvironment.container.effectiveContentSize.width
             let columnsCount = currentWidth > DetailsSpec.thresholdWidth ? 2 : 1
-
+            
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .fractionalHeight(1.0)
@@ -44,17 +44,16 @@ private extension DetailsView {
                 bottom: DetailsSpec.itemIsetVertical,
                 trailing: DetailsSpec.itemIsetHorizontal
             )
-
+            
             let groupSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
             )
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnsCount)
-
+            
             let section = NSCollectionLayoutSection(group: group)
             return section
         }
-        return layout
     }
     
     func placeOnView(_ superview: UIView) {
