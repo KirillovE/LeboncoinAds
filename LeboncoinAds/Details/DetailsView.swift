@@ -56,7 +56,7 @@ private extension DetailsView {
             
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(44)
+                heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
             )
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: headerSize,
@@ -91,6 +91,7 @@ private extension DetailsView {
             .CellRegistration<UICollectionViewListCell, AdDetails.TextField> { cell, indexPath, identifier in
                 var content = cell.defaultContentConfiguration()
                 content.text = identifier.text
+                content.textProperties.numberOfLines = 0
                 content.image = .init(systemName: identifier.systemImageName)
                 cell.contentConfiguration = content
                 
