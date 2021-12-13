@@ -6,7 +6,7 @@ final class AdsListViewController: UIViewController {
     
     private let table = AdsListView()
     private var adsProvider: AdsProvider
-    private var dataSource: UITableViewDiffableDataSource<AdsListSection, AdComplete>?
+    private var dataSource: UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
     private let adsListDelegate: ListSelectionDelegate
     
     private var categories = [SelectableCategory]() {
