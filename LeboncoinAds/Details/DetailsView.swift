@@ -4,6 +4,7 @@ import Models
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
     private var diffDataSource: UICollectionViewDiffableDataSource<Int, AdDetails.TextField>?
+    private static let sectionHeaderElementKind = "DetailsViewSection"
     
     init() {
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
@@ -52,6 +53,24 @@ private extension DetailsView {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: columnsCount)
             
             let section = NSCollectionLayoutSection(group: group)
+            
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(44)
+            )
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: Self.sectionHeaderElementKind,
+                alignment: .top
+            )
+            sectionHeader.contentInsets = .init(
+                top: DetailsSpec.itemIsetVertical,
+                leading: .zero,
+                bottom: DetailsSpec.itemIsetVertical,
+                trailing: .zero
+            )
+            section.boundarySupplementaryItems = [sectionHeader]
+            
             return section
         }
     }
@@ -87,6 +106,24 @@ private extension DetailsView {
                 using: cellRegistration,
                 for: indexPath,
                 item: identifier
+            )
+        }
+        
+        let headerRegistration = UICollectionView
+            .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
+//                [weak self]
+                (supplementaryView, kind, indexPath) in
+                var content = UIListContentConfiguration.cell()
+//                content.image = self?.data?.imageAddress
+                content.image = UIImage(named: "Placeholder")
+                content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
+                supplementaryView.contentConfiguration = content
+            }
+        
+        diffDataSource?.supplementaryViewProvider = { view, kind, index in
+            self.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration,
+                for: index
             )
         }
 
