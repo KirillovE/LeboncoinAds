@@ -63,12 +63,12 @@ private extension AdsListView {
         let cellRegistration = UICollectionView
             .CellRegistration<UICollectionViewListCell, AdComplete> { cell, indexPath, itemIdentifier in
                 
-                var content = UIListContentConfiguration.sidebarSubtitleCell()
+                var content = UIListContentConfiguration.cell()
                 content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
                 content.textProperties.numberOfLines = 0
                 content.secondaryText = itemIdentifier.summary.categoryName
-                // TODO: Replace with actual image
-                content.image = UIImage(named: "Placeholder")
+                content.secondaryTextProperties.color = .secondaryLabel
+                content.image = itemIdentifier.summary.image
                 content.imageProperties.maximumSize = .init(width: 50, height: 50)
                 content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
                 
