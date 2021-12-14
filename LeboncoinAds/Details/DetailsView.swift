@@ -117,8 +117,9 @@ private extension DetailsView {
         let headerRegistration = UICollectionView
             .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
                 [weak self] supplementaryView, kind, indexPath in
+                guard let image = self?.data?.image else { return }
                 var content = UIListContentConfiguration.cell()
-                content.image = UIImage(named: "Placeholder")
+                content.image = image
                 content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
                 supplementaryView.contentConfiguration = content
             }
