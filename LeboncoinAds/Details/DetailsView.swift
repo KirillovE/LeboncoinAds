@@ -114,26 +114,33 @@ private extension DetailsView {
             )
         }
         
-        let headerRegistration = UICollectionView
-            .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
-                [weak self] supplementaryView, kind, indexPath in
-                guard let image = self?.data?.image else { return }
-                var content = UIListContentConfiguration.cell()
-                content.image = image
-                content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
-                supplementaryView.contentConfiguration = content
+        if #available(iOS 15.0, *) {
+            let headerRegistration = UICollectionView
+                .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
+                    [weak self] supplementaryView, kind, indexPath in
+                    
+                    guard
+                        let section = self?.diffDataSource?.sectionIdentifier(for: indexPath.section),
+                        case .main(let image) = section
+                    else { return }
+                    var content = UIListContentConfiguration.cell()
+                    content.image = image
+                    content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
+                    supplementaryView.contentConfiguration = content
+                }
+            
+            diffDataSource?.supplementaryViewProvider = { view, kind, index in
+                self.dequeueConfiguredReusableSupplementary(
+                    using: headerRegistration,
+                    for: index
+                )
             }
-        
-        diffDataSource?.supplementaryViewProvider = { view, kind, index in
-            self.dequeueConfiguredReusableSupplementary(
-                using: headerRegistration,
-                for: index
-            )
         }
-
+        
         var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
-        snapshot.appendSections(DetailsSection.allCases)
-        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: .main)
+        let mainSection = DetailsSection.main(nil)
+        snapshot.appendSections([mainSection, .largeDescription])
+        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: mainSection)
         data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
         diffDataSource?.apply(snapshot, animatingDifferences: false)
     }
@@ -151,10 +158,11 @@ private extension DetailsView {
             self?.data?.image = loadedImage
             DispatchQueue.main.async {
                 var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
-                snapshot.appendSections(DetailsSection.allCases)
-                snapshot.appendItems(self?.data?.textFields.dropLast() ?? [], toSection: .main)
+                let mainSection = DetailsSection.main(loadedImage)
+                snapshot.appendSections([mainSection, .largeDescription])
+                snapshot.appendItems(self?.data?.textFields.dropLast() ?? [], toSection: mainSection)
                 self?.data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
-                self?.diffDataSource?.apply(snapshot, animatingDifferences: false)
+                self?.diffDataSource?.apply(snapshot, animatingDifferences: true)
             }
         }
     }
