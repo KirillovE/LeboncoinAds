@@ -112,30 +112,28 @@ private extension DetailsView {
             )
         }
         
-        if #available(iOS 15.0, *) {
-            let headerRegistration = UICollectionView
-                .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
-                    [weak diffDataSource] supplementaryView, kind, indexPath in
-                    guard
-                        let section = diffDataSource?.sectionIdentifier(for: indexPath.section),
-                        case .main(let image) = section
-                    else { return }
-                    
-                    var content = UIListContentConfiguration.plainHeader()
-                    content.image = image
-                    content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
-                    supplementaryView.contentConfiguration = content
-                }
-            
-            diffDataSource?.supplementaryViewProvider = { view, kind, index in
-                self.dequeueConfiguredReusableSupplementary(
-                    using: headerRegistration,
-                    for: index
-                )
+        let headerRegistration = UICollectionView
+            .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
+                [weak self] supplementaryView, kind, indexPath in
+                guard
+                    indexPath.section == 0,
+                    let image = self?.data?.image
+                else { return }
+                
+                var content = UIListContentConfiguration.plainHeader()
+                content.image = image
+                content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
+                supplementaryView.contentConfiguration = content
             }
+        
+        diffDataSource?.supplementaryViewProvider = { view, kind, index in
+            self.dequeueConfiguredReusableSupplementary(
+                using: headerRegistration,
+                for: index
+            )
         }
         
-        updateUI(headerImage: nil)
+        updateUI(headerImage: data?.image)
     }
     
     func loadImage() {
