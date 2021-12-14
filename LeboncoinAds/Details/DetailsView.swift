@@ -3,7 +3,7 @@ import Models
 
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
-    private var diffDataSource: UICollectionViewDiffableDataSource<Int, AdDetails.TextField>?
+    private var diffDataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails.TextField>?
     private static let sectionHeaderElementKind = "DetailsViewSection"
     
     init() {
@@ -105,7 +105,7 @@ private extension DetailsView {
                 cell.backgroundConfiguration = background
             }
 
-        diffDataSource = UICollectionViewDiffableDataSource<Int, AdDetails.TextField>(collectionView: self) {
+        diffDataSource = UICollectionViewDiffableDataSource<DetailsSection, AdDetails.TextField>(collectionView: self) {
             collectionView, indexPath, identifier -> UICollectionViewCell? in
             collectionView.dequeueConfiguredReusableCell(
                 using: cellRegistration,
@@ -131,31 +131,32 @@ private extension DetailsView {
             )
         }
 
-        var snapshot = NSDiffableDataSourceSnapshot<Int, AdDetails.TextField>()
-        snapshot.appendSections([0, 1])
-        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: 0)
-        data?.textFields.last.map { snapshot.appendItems([$0], toSection: 1) }
+        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
+        snapshot.appendSections(DetailsSection.allCases)
+        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: .main)
+        data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
         diffDataSource?.apply(snapshot, animatingDifferences: false)
     }
     
     func loadImage() {
-//        UIImage.loaded(
-//            from: self?.data?.imageAddress ?? "",
-//            id: self?.data?.id ?? 0
-//        ) { loadedImage, id in
-//            guard id == data?.id else { return }
-//            DispatchQueue.main.async {
-//                content.image = loadedImage
-////                data.
-//                
-//                
-//                var snapshot = NSDiffableDataSourceSnapshot<Int, AdDetails.TextField>()
-//                snapshot.appendSections([0, 1])
-//                snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: 0)
-//                data?.textFields.last.map { snapshot.appendItems([$0], toSection: 1) }
-//                diffDataSource?.apply(snapshot, animatingDifferences: false)
-//            }
-//        }
+        UIImage.loaded(
+            from: data?.imageAddress ?? "",
+            id: data?.id ?? 0
+        ) { [weak self] loadedImage, id in
+            guard
+                let loadedImage = loadedImage,
+                id == self?.data?.id
+            else { return }
+            
+            self?.data?.image = loadedImage
+            DispatchQueue.main.async {
+                var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
+                snapshot.appendSections(DetailsSection.allCases)
+                snapshot.appendItems(self?.data?.textFields.dropLast() ?? [], toSection: .main)
+                self?.data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
+                self?.diffDataSource?.apply(snapshot, animatingDifferences: false)
+            }
+        }
     }
 
 }
