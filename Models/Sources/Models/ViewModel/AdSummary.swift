@@ -1,3 +1,5 @@
+import UIKit
+
 /// Short info about classified ad
 public struct AdSummary {
     
@@ -13,6 +15,9 @@ public struct AdSummary {
     /// Address of small image
     public let imageAddress: String?
     
+    /// Image for this ad. May contain placeholder initialy
+    public var image: UIImage
+    
     /// Current price of ad in needed format
     public let priceRepresentation: String
 
@@ -21,12 +26,14 @@ public struct AdSummary {
         categoryName: String,
         isUrgent: Bool,
         imageAddress: String?,
+        image: UIImage,
         priceRepresentation: String
     ) {
         self.title = title
         self.categoryName = categoryName
         self.isUrgent = isUrgent
         self.imageAddress = imageAddress
+        self.image = image
         self.priceRepresentation = priceRepresentation
     }
     

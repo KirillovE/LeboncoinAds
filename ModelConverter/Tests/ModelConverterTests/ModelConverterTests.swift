@@ -7,7 +7,7 @@ final class ModelConverterTests: XCTestCase {
     var converter: ModelConverter!
     
     override func setUp() {
-        converter = .init()
+        converter = .init(placeholder: UIImage())
     }
     
     func testFilledCategoriesConversion() {

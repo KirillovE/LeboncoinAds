@@ -1,5 +1,5 @@
 import Models
-import Foundation
+import UIKit
 
 /// Simulates request for classifed ads
 ///
@@ -7,6 +7,7 @@ import Foundation
 /// Multiple responces per one request can be provided
 struct MockAdsProvider: AdsProvider {
     
+    private let placeholderImage = UIImage(named: "Placeholder")!
     private let responsesCount: Int
     private let includeErrors: Bool
     
@@ -67,6 +68,7 @@ private extension MockAdsProvider {
                 categoryName: category,
                 isUrgent: isUrgent,
                 imageAddress: "Small image #\(digit)",
+                image: placeholderImage,
                 priceRepresentation: priceRepresentation
             )
             let details = AdDetails(
@@ -77,6 +79,7 @@ private extension MockAdsProvider {
                 creationDate: "\(digit) days ago",
                 isUrgent: isUrgent,
                 imageAddress: "Big image #\(digit)",
+                image: placeholderImage,
                 priceRepresentation: priceRepresentation
             )
             return AdComplete(

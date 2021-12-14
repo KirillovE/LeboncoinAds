@@ -3,6 +3,7 @@ import Models
 
 /// Representation of classified ads
 final class AdsListView: UICollectionView {
+    var diffDataSource: UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
     
     init() {
         super.init(frame: .zero, collectionViewLayout: AdsListView.createLayout())
@@ -15,15 +16,13 @@ final class AdsListView: UICollectionView {
     /// Configure list using needed parameters
     /// - Parameters:
     ///   - superview: View on which table must be installed
-    ///   - dataSource: Source of data for list
     ///   - delegate: The object that acts as the delegate of the list view. Not retained
     func configure(
         superview: UIView,
-        dataSource: inout UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?,
         delegate: UICollectionViewDelegate?
     ) {
         placeOnView(superview)
-        setupDataSource(&dataSource)
+        setupDataSource()
         self.delegate = delegate
     }
     
@@ -59,9 +58,7 @@ private extension AdsListView {
         ])
     }
     
-    func setupDataSource(
-        _ dataSource: inout UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
-    ) {
+    func setupDataSource() {
         let cellRegistration = UICollectionView
             .CellRegistration<UICollectionViewListCell, AdComplete> { cell, indexPath, itemIdentifier in
                 
@@ -83,7 +80,7 @@ private extension AdsListView {
                 cell.backgroundConfiguration = background
             }
         
-        dataSource = UICollectionViewDiffableDataSource<AdsListSection, AdComplete>(
+        diffDataSource = UICollectionViewDiffableDataSource<AdsListSection, AdComplete>(
             collectionView: self
         ) { collectionView, indexPath, itemIdentifier in
             

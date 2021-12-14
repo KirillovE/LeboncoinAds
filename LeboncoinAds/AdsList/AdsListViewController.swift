@@ -4,9 +4,8 @@ import XCTest
 
 final class AdsListViewController: UIViewController {
     
-    private let table = AdsListView()
+    private let list = AdsListView()
     private var adsProvider: AdsProvider
-    private var dataSource: UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
     private let adsListDelegate: ListSelectionDelegate
     
     private var categories = [SelectableCategory]() {
@@ -37,9 +36,8 @@ final class AdsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationItems()
-        table.configure(
+        list.configure(
             superview: view,
-            dataSource: &dataSource,
             delegate: adsListDelegate
         )
         updateUI(animated: false)
@@ -104,7 +102,7 @@ private extension AdsListViewController {
         snapshot.appendSections(AdsListSection.allCases)
         snapshot.appendItems(urgents, toSection: .urgent)
         snapshot.appendItems(nonUrgents, toSection: .nonUrgent)
-        dataSource?.apply(snapshot, animatingDifferences: animated)
+        list.diffDataSource?.apply(snapshot, animatingDifferences: animated)
     }
     
     func handleError(_ error: TextualError) {
@@ -119,7 +117,7 @@ private extension AdsListViewController {
     }
     
     func handleSelectionAt(_ indexPath: IndexPath) {
-        guard let selectedAd = dataSource?.itemIdentifier(for: indexPath) else {
+        guard let selectedAd = list.diffDataSource?.itemIdentifier(for: indexPath) else {
             let error: TextualError = "Something went wrong. Please, tell developer about it"
             handleError(error)
             return

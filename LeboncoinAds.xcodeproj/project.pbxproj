@@ -29,14 +29,13 @@
 		44C6056C275E7EAA002E4626 /* LeboncoinAdsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6056B275E7EAA002E4626 /* LeboncoinAdsTests.swift */; };
 		44C60576275E7EAA002E4626 /* LeboncoinAdsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60575275E7EAA002E4626 /* LeboncoinAdsUITests.swift */; };
 		44C60578275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60577275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift */; };
-		44C6059127623C83002E4626 /* AdsLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 44C6059027623C83002E4626 /* AdsLoader */; };
-		44C6059327623C8C002E4626 /* ModelConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 44C6059227623C8C002E4626 /* ModelConverter */; };
 		44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059527623FDA002E4626 /* AdsProvider.swift */; };
 		44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059727625949002E4626 /* AdsListAssembler.swift */; };
 		44C6059A27625D7D002E4626 /* MockAdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C6059927625D7D002E4626 /* MockAdsProvider.swift */; };
 		44F8F37A2767B87E0043E07E /* ModelsConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F3792767B87E0043E07E /* ModelsConverterService.swift */; };
 		44F8F37C2767C6430043E07E /* AdsLoader+AdsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F37B2767C6430043E07E /* AdsLoader+AdsAPIService.swift */; };
 		44F8F37E2767C68E0043E07E /* ModelConverter+ModelsConverterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F37D2767C68E0043E07E /* ModelConverter+ModelsConverterService.swift */; };
+		44F8F38727681CFE0043E07E /* UIImage+Loaded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F8F38627681CFE0043E07E /* UIImage+Loaded.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +70,9 @@
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
 		44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionDelegate.swift; sourceTree = "<group>"; };
 		44B3BCBF2764FBC30065548B /* SelectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionProvider.swift; sourceTree = "<group>"; };
+		44B76C5A276827870078CE62 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		44B76C5B276827930078CE62 /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AdsLoader; sourceTree = "<group>"; };
+		44B76C5C2768279D0078CE62 /* ModelConverter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ModelConverter; sourceTree = "<group>"; };
 		44C60551275E7EA9002E4626 /* LeboncoinAds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeboncoinAds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60554275E7EA9002E4626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C60556275E7EA9002E4626 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,15 +85,13 @@
 		44C60571275E7EAA002E4626 /* LeboncoinAdsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LeboncoinAdsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60575275E7EAA002E4626 /* LeboncoinAdsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeboncoinAdsUITests.swift; sourceTree = "<group>"; };
 		44C60577275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeboncoinAdsUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		44C60586275FBD91002E4626 /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AdsLoader; sourceTree = "<group>"; };
-		44C6058D27623BDB002E4626 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
-		44C6058E27623BEA002E4626 /* ModelConverter */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ModelConverter; sourceTree = "<group>"; };
 		44C6059527623FDA002E4626 /* AdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsProvider.swift; sourceTree = "<group>"; };
 		44C6059727625949002E4626 /* AdsListAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListAssembler.swift; sourceTree = "<group>"; };
 		44C6059927625D7D002E4626 /* MockAdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAdsProvider.swift; sourceTree = "<group>"; };
 		44F8F3792767B87E0043E07E /* ModelsConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelsConverterService.swift; sourceTree = "<group>"; };
 		44F8F37B2767C6430043E07E /* AdsLoader+AdsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdsLoader+AdsAPIService.swift"; sourceTree = "<group>"; };
 		44F8F37D2767C68E0043E07E /* ModelConverter+ModelsConverterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ModelConverter+ModelsConverterService.swift"; sourceTree = "<group>"; };
+		44F8F38627681CFE0043E07E /* UIImage+Loaded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Loaded.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,8 +99,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				44C6059127623C83002E4626 /* AdsLoader in Frameworks */,
-				44C6059327623C8C002E4626 /* ModelConverter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +139,7 @@
 				44C6055F275E7EAA002E4626 /* LaunchScreen.storyboard */,
 				44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */,
 				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
+				44F8F38627681CFE0043E07E /* UIImage+Loaded.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -166,10 +165,20 @@
 			path = Details;
 			sourceTree = "<group>";
 		};
+		44B76C59276827870078CE62 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				44B76C5A276827870078CE62 /* Models */,
+				44B76C5B276827930078CE62 /* AdsLoader */,
+				44B76C5C2768279D0078CE62 /* ModelConverter */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		44C60548275E7EA9002E4626 = {
 			isa = PBXGroup;
 			children = (
-				44C60585275FBD91002E4626 /* Packages */,
+				44B76C59276827870078CE62 /* Packages */,
 				44C60553275E7EA9002E4626 /* LeboncoinAds */,
 				44C6056A275E7EAA002E4626 /* LeboncoinAdsTests */,
 				44C60574275E7EAA002E4626 /* LeboncoinAdsUITests */,
@@ -215,16 +224,6 @@
 				44C60577275E7EAA002E4626 /* LeboncoinAdsUITestsLaunchTests.swift */,
 			);
 			path = LeboncoinAdsUITests;
-			sourceTree = "<group>";
-		};
-		44C60585275FBD91002E4626 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				44C60586275FBD91002E4626 /* AdsLoader */,
-				44C6058D27623BDB002E4626 /* Models */,
-				44C6058E27623BEA002E4626 /* ModelConverter */,
-			);
-			name = Packages;
 			sourceTree = "<group>";
 		};
 		44C6058F27623C83002E4626 /* Frameworks */ = {
@@ -283,8 +282,6 @@
 			);
 			name = LeboncoinAds;
 			packageProductDependencies = (
-				44C6059027623C83002E4626 /* AdsLoader */,
-				44C6059227623C8C002E4626 /* ModelConverter */,
 			);
 			productName = LeboncoinAds;
 			productReference = 44C60551275E7EA9002E4626 /* LeboncoinAds.app */;
@@ -412,6 +409,7 @@
 				4411D14E2766A5390034A403 /* DetailsSpec.swift in Sources */,
 				44B3BCBE2764F60D0065548B /* ListSelectionDelegate.swift in Sources */,
 				4411D137276534FF0034A403 /* FilterProvider.swift in Sources */,
+				44F8F38727681CFE0043E07E /* UIImage+Loaded.swift in Sources */,
 				44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */,
 				4411D14127655E070034A403 /* FiltersListAssembler.swift in Sources */,
 				4411D14427664DAF0034A403 /* DetailsViewController.swift in Sources */,
@@ -778,17 +776,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		44C6059027623C83002E4626 /* AdsLoader */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = AdsLoader;
-		};
-		44C6059227623C8C002E4626 /* ModelConverter */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = ModelConverter;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44C60549275E7EA9002E4626 /* Project object */;
 }

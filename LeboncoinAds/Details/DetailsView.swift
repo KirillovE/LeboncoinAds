@@ -21,6 +21,7 @@ final class DetailsView: UICollectionView {
         self.data = data
         placeOnView(superview)
         setupDataSource()
+        loadImage()
         allowsSelection = false
     }
 }
@@ -115,10 +116,8 @@ private extension DetailsView {
         
         let headerRegistration = UICollectionView
             .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
-//                [weak self]
-                (supplementaryView, kind, indexPath) in
+                [weak self] supplementaryView, kind, indexPath in
                 var content = UIListContentConfiguration.cell()
-//                content.image = self?.data?.imageAddress
                 content.image = UIImage(named: "Placeholder")
                 content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
                 supplementaryView.contentConfiguration = content
@@ -136,6 +135,26 @@ private extension DetailsView {
         snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: 0)
         data?.textFields.last.map { snapshot.appendItems([$0], toSection: 1) }
         diffDataSource?.apply(snapshot, animatingDifferences: false)
+    }
+    
+    func loadImage() {
+//        UIImage.loaded(
+//            from: self?.data?.imageAddress ?? "",
+//            id: self?.data?.id ?? 0
+//        ) { loadedImage, id in
+//            guard id == data?.id else { return }
+//            DispatchQueue.main.async {
+//                content.image = loadedImage
+////                data.
+//                
+//                
+//                var snapshot = NSDiffableDataSourceSnapshot<Int, AdDetails.TextField>()
+//                snapshot.appendSections([0, 1])
+//                snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: 0)
+//                data?.textFields.last.map { snapshot.appendItems([$0], toSection: 1) }
+//                diffDataSource?.apply(snapshot, animatingDifferences: false)
+//            }
+//        }
     }
 
 }

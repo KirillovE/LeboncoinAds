@@ -1,8 +1,10 @@
 import Models
-import Foundation
+import UIKit
 
 /// Object that converts data from raw to view model
 public struct ModelConverter {
+    
+    private let placeholderImage: UIImage
     
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -10,7 +12,9 @@ public struct ModelConverter {
         return formatter
     }()
 
-    public init() { }
+    public init(placeholder: UIImage) {
+        placeholderImage = placeholder
+    }
     
     /// Converts raw ads to view models sorting them in ascending order by date of creation
     /// - Parameters:
@@ -57,6 +61,7 @@ extension ModelConverter {
             categoryName: categoryName,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.small,
+            image: placeholderImage,
             priceRepresentation: priceRepresentation
         )
 
@@ -68,6 +73,7 @@ extension ModelConverter {
             creationDate: ad.creationDate,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.thumb,
+            image: placeholderImage,
             priceRepresentation: priceRepresentation
         )
         

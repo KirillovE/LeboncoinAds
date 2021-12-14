@@ -1,3 +1,5 @@
+import UIKit
+
 /// Detailed info about classified ad
 public struct AdDetails {
     
@@ -22,6 +24,9 @@ public struct AdDetails {
     /// Address of full resolution image
     public let imageAddress: String?
     
+    /// Image for this ad. May contain placeholder initialy
+    public var image: UIImage
+    
     /// Current price of ad in needed format
     public let priceRepresentation: String
     
@@ -36,6 +41,7 @@ public struct AdDetails {
         creationDate: String,
         isUrgent: Bool,
         imageAddress: String?,
+        image: UIImage,
         priceRepresentation: String
     ) {
         self.id = id
@@ -45,6 +51,7 @@ public struct AdDetails {
         self.creationDate = creationDate
         self.isUrgent = isUrgent
         self.imageAddress = imageAddress
+        self.image = image
         self.priceRepresentation = priceRepresentation
         
         var fields: [TextField] = [

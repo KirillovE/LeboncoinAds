@@ -5,6 +5,8 @@ import ModelConverter
 /// Assembles classified ads list with needed parameters
 struct AdsListAssembler {
     
+    private static let placeholder = UIImage(named: "Placeholder") ?? UIImage()
+    
     /// Assembles view controller using needed parameters
     /// - Returns: Assembled view controller
     func assembleViewController() -> UIViewController {
@@ -29,7 +31,7 @@ private extension AdsListAssembler {
             case .live:
                 return ClosureBasedAdsProvider(
                     adsLoader: AdsLoader(),
-                    modelsConverter: ModelConverter()
+                    modelsConverter: ModelConverter(placeholder: AdsListAssembler.placeholder)
                 )
             case .mockSuccess:
                 return MockAdsProvider(responsesCount: 1)
