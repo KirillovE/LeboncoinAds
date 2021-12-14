@@ -63,8 +63,9 @@ private extension AdsListView {
         let cellRegistration = UICollectionView
             .CellRegistration<UICollectionViewListCell, AdComplete> { cell, indexPath, itemIdentifier in
                 
-                var content = UIListContentConfiguration.cell()
+                var content = UIListContentConfiguration.sidebarSubtitleCell()
                 content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
+                content.textProperties.numberOfLines = 0
                 content.secondaryText = itemIdentifier.summary.categoryName
                 // TODO: Replace with actual image
                 content.image = UIImage(named: "Placeholder")
