@@ -43,7 +43,8 @@ final class AdsListView: UICollectionView {
 private extension AdsListView {
     
     static func createLayout() -> UICollectionViewLayout {
-        let configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
+        configuration.headerMode = .supplementary
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
@@ -90,6 +91,27 @@ private extension AdsListView {
                 item: itemIdentifier
             )
         }
+        
+        if #available(iOS 15.0, *) {
+            let headerRegistration = UICollectionView
+                .SupplementaryRegistration<UICollectionViewListCell>(elementKind: "UICollectionElementKindSectionHeader") {
+                    [weak self] supplementaryView, kind, indexPath in
+                    guard let section = self?.diffDataSource?.sectionIdentifier(for: indexPath.section)
+                    else { return }
+                    
+                    var content = UIListContentConfiguration.prominentInsetGroupedHeader()
+                    content.text = String(describing: section)
+                    supplementaryView.contentConfiguration = content
+                }
+            
+            diffDataSource?.supplementaryViewProvider = { view, kind, index in
+                self.dequeueConfiguredReusableSupplementary(
+                    using: headerRegistration,
+                    for: index
+                )
+            }
+        }
+        
     }
     
 }

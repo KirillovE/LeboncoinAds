@@ -7,3 +7,14 @@ enum AdsListSection: CaseIterable {
     /// Section for non-urgent ads
     case nonUrgent
 }
+
+extension AdsListSection: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .urgent:
+            return "Urgents"
+        case .nonUrgent:
+            return "Nonurgents"
+        }
+    }
+}
