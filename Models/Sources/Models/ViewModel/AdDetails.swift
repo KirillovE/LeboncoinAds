@@ -25,7 +25,7 @@ public struct AdDetails {
     public let imageAddress: String?
     
     /// Image for this ad. May contain placeholder initialy
-    public var image: UIImage
+    public var image: UIImage?
     
     /// Current price of ad in needed format
     public let priceRepresentation: String
@@ -41,7 +41,7 @@ public struct AdDetails {
         creationDate: String,
         isUrgent: Bool,
         imageAddress: String?,
-        image: UIImage,
+        image: UIImage?,
         priceRepresentation: String
     ) {
         self.id = id

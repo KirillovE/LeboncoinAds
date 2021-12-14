@@ -73,7 +73,7 @@ extension ModelConverter {
             creationDate: ad.creationDate,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.thumb,
-            image: placeholderImage,
+            image: nil,
             priceRepresentation: priceRepresentation
         )
         
