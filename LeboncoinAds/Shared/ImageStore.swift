@@ -2,6 +2,7 @@ import UIKit
 
 final class ImageStore {
     static let shared = ImageStore()
+    static let placeholder = UIImage(named: "Placeholder")
     
     private var store = NSCache<NSString, UIImage>()
     private init() { }

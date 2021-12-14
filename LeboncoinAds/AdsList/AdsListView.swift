@@ -69,15 +69,9 @@ private extension AdsListView {
                 content.textProperties.numberOfLines = 0
                 content.secondaryText = itemIdentifier.summary.categoryName
                 content.secondaryTextProperties.color = .secondaryLabel
-                
-                let image = ImageStore.shared.fetchImage(withAddress: itemIdentifier.summary.imageAddress ?? "")
-                if image == nil {
-                    self?.loadImage(for: itemIdentifier)
-                }
-                content.image = image//itemIdentifier.summary.image
+                content.image = self?.fetchImage(for: itemIdentifier)
                 content.imageProperties.maximumSize = .init(width: 50, height: 50)
                 content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
-                self?.loadImage(for: itemIdentifier)
                 
                 cell.accessories = [.disclosureIndicator()]
                 if itemIdentifier.summary.isUrgent {
@@ -122,24 +116,25 @@ private extension AdsListView {
         
     }
     
-    func loadImage(for item: AdComplete) {
-        guard let link = item.summary.imageAddress else { return }
-        
-        UIImage.loaded(
-            from: link,
-            id: item.id
-        ) { [weak diffDataSource] loadedImage, _ in
+    func fetchImage(for item: AdComplete) -> UIImage? {
+        guard let link = item.summary.imageAddress else { return nil }
+        if let image = ImageStore.shared.fetchImage(withAddress: link) {
+            return image
+        }
+        UIImage.loaded(from: link, id: item.id) { [weak diffDataSource] loadedImage, _ in
             guard let loadedImage = loadedImage else { return }
-            
             ImageStore.shared.saveImage(loadedImage, withAddress: link)
             
             var snapshot = diffDataSource?.snapshot()
-            if #available(iOS 15.0, *) {
-                snapshot?.reconfigureItems([item])
-            } else {
-                snapshot?.reloadItems([item])
+            DispatchQueue.main.async {
+                if #available(iOS 15.0, *) {
+                    snapshot?.reconfigureItems([item])
+                } else {
+                    snapshot?.reloadItems([item])
+                }
             }
         }
+        return ImageStore.placeholder
     }
     
 }
