@@ -62,18 +62,16 @@ private extension DetailsView {
                 trailing: DetailsSpec.insetHorizontal
             )
             
-            if sectionIndex == 0 {
-                let headerSize = NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .estimated(DetailsSpec.estimatedCellHeight)
-                )
-                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                    layoutSize: headerSize,
-                    elementKind: Self.sectionHeaderElementKind,
-                    alignment: .top
-                )
-                section.boundarySupplementaryItems = [sectionHeader]
-            }
+            let headerSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(0)
+            )
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerSize,
+                elementKind: DetailsView.sectionHeaderElementKind,
+                alignment: .top
+            )
+            section.boundarySupplementaryItems = [sectionHeader]
             
             return section
         }
@@ -117,13 +115,13 @@ private extension DetailsView {
         if #available(iOS 15.0, *) {
             let headerRegistration = UICollectionView
                 .SupplementaryRegistration<UICollectionViewListCell>(elementKind: Self.sectionHeaderElementKind) {
-                    [weak self] supplementaryView, kind, indexPath in
-                    
+                    [weak diffDataSource] supplementaryView, kind, indexPath in
                     guard
-                        let section = self?.diffDataSource?.sectionIdentifier(for: indexPath.section),
+                        let section = diffDataSource?.sectionIdentifier(for: indexPath.section),
                         case .main(let image) = section
                     else { return }
-                    var content = UIListContentConfiguration.cell()
+                    
+                    var content = UIListContentConfiguration.plainHeader()
                     content.image = image
                     content.imageProperties.cornerRadius = DetailsSpec.cornerRadius
                     supplementaryView.contentConfiguration = content
@@ -137,12 +135,7 @@ private extension DetailsView {
             }
         }
         
-        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
-        let mainSection = DetailsSection.main(nil)
-        snapshot.appendSections([mainSection, .largeDescription])
-        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: mainSection)
-        data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
-        diffDataSource?.apply(snapshot, animatingDifferences: false)
+        updateUI(headerImage: nil)
     }
     
     func loadImage() {
@@ -157,14 +150,18 @@ private extension DetailsView {
             
             self?.data?.image = loadedImage
             DispatchQueue.main.async {
-                var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
-                let mainSection = DetailsSection.main(loadedImage)
-                snapshot.appendSections([mainSection, .largeDescription])
-                snapshot.appendItems(self?.data?.textFields.dropLast() ?? [], toSection: mainSection)
-                self?.data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
-                self?.diffDataSource?.apply(snapshot, animatingDifferences: true)
+                self?.updateUI(headerImage: loadedImage)
             }
         }
+    }
+    
+    func updateUI(headerImage: UIImage?) {
+        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
+        let mainSection = DetailsSection.main(headerImage)
+        snapshot.appendSections([mainSection, .largeDescription])
+        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: mainSection)
+        data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
+        diffDataSource?.apply(snapshot, animatingDifferences: true)
     }
 
 }
