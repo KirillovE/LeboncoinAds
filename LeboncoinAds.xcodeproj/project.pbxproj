@@ -19,6 +19,9 @@
 		4411D1542767A1620034A403 /* AdsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D1532767A1620034A403 /* AdsAPIService.swift */; };
 		442319722763F0BB00268B74 /* AdsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319712763F0BB00268B74 /* AdsListSection.swift */; };
 		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
+		44A58B2B2768F023004EC53D /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 44A58B2A2768F023004EC53D /* Models */; };
+		44A58B2F2768F051004EC53D /* AdsLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 44A58B2E2768F051004EC53D /* AdsLoader */; };
+		44A58B312768F051004EC53D /* ModelConverter in Frameworks */ = {isa = PBXBuildFile; productRef = 44A58B302768F051004EC53D /* ModelConverter */; };
 		44B3BCBE2764F60D0065548B /* ListSelectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */; };
 		44B3BCC02764FBC30065548B /* SelectionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44B3BCBF2764FBC30065548B /* SelectionProvider.swift */; };
 		44C60555275E7EA9002E4626 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44C60554275E7EA9002E4626 /* AppDelegate.swift */; };
@@ -68,11 +71,11 @@
 		4411D1532767A1620034A403 /* AdsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsAPIService.swift; sourceTree = "<group>"; };
 		442319712763F0BB00268B74 /* AdsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListSection.swift; sourceTree = "<group>"; };
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
+		44A58B292768EFF4004EC53D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
+		44A58B2C2768F036004EC53D /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AdsLoader; sourceTree = "<group>"; };
+		44A58B2D2768F044004EC53D /* ModelConverter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ModelConverter; sourceTree = "<group>"; };
 		44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSelectionDelegate.swift; sourceTree = "<group>"; };
 		44B3BCBF2764FBC30065548B /* SelectionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionProvider.swift; sourceTree = "<group>"; };
-		44B76C5A276827870078CE62 /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
-		44B76C5B276827930078CE62 /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AdsLoader; sourceTree = "<group>"; };
-		44B76C5C2768279D0078CE62 /* ModelConverter */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ModelConverter; sourceTree = "<group>"; };
 		44C60551275E7EA9002E4626 /* LeboncoinAds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LeboncoinAds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44C60554275E7EA9002E4626 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44C60556275E7EA9002E4626 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +102,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44A58B2F2768F051004EC53D /* AdsLoader in Frameworks */,
+				44A58B2B2768F023004EC53D /* Models in Frameworks */,
+				44A58B312768F051004EC53D /* ModelConverter in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,9 +174,9 @@
 		44B76C59276827870078CE62 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				44B76C5A276827870078CE62 /* Models */,
-				44B76C5B276827930078CE62 /* AdsLoader */,
-				44B76C5C2768279D0078CE62 /* ModelConverter */,
+				44A58B292768EFF4004EC53D /* Models */,
+				44A58B2C2768F036004EC53D /* AdsLoader */,
+				44A58B2D2768F044004EC53D /* ModelConverter */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -282,6 +288,9 @@
 			);
 			name = LeboncoinAds;
 			packageProductDependencies = (
+				44A58B2A2768F023004EC53D /* Models */,
+				44A58B2E2768F051004EC53D /* AdsLoader */,
+				44A58B302768F051004EC53D /* ModelConverter */,
 			);
 			productName = LeboncoinAds;
 			productReference = 44C60551275E7EA9002E4626 /* LeboncoinAds.app */;
@@ -776,6 +785,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		44A58B2A2768F023004EC53D /* Models */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Models;
+		};
+		44A58B2E2768F051004EC53D /* AdsLoader */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AdsLoader;
+		};
+		44A58B302768F051004EC53D /* ModelConverter */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ModelConverter;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 44C60549275E7EA9002E4626 /* Project object */;
 }
