@@ -41,9 +41,9 @@ private extension DetailsView {
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.edgeSpacing = .init(
-                leading: .fixed(0),
+                leading: .fixed(.zero),
                 top: .fixed(DetailsSpec.insetVertical),
-                trailing: .fixed(0),
+                trailing: .fixed(.zero),
                 bottom: .fixed(DetailsSpec.insetVertical)
             )
             
@@ -56,9 +56,9 @@ private extension DetailsView {
             
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = .init(
-                top: DetailsSpec.insetVertical,
+                top: .zero,
                 leading: DetailsSpec.insetHorizontal,
-                bottom: DetailsSpec.insetVertical,
+                bottom: .zero,
                 trailing: DetailsSpec.insetHorizontal
             )
             
