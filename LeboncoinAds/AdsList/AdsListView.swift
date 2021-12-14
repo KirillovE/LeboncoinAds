@@ -61,16 +61,23 @@ private extension AdsListView {
     
     func setupDataSource() {
         let cellRegistration = UICollectionView
-            .CellRegistration<UICollectionViewListCell, AdComplete> { cell, indexPath, itemIdentifier in
+            .CellRegistration<UICollectionViewListCell, AdComplete> {
+                [weak self] cell, indexPath, itemIdentifier in
                 
                 var content = UIListContentConfiguration.cell()
                 content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
                 content.textProperties.numberOfLines = 0
                 content.secondaryText = itemIdentifier.summary.categoryName
                 content.secondaryTextProperties.color = .secondaryLabel
-                content.image = itemIdentifier.summary.image
+                
+                let image = ImageStore.shared.fetchImage(withAddress: itemIdentifier.summary.imageAddress ?? "")
+                if image == nil {
+                    self?.loadImage(for: itemIdentifier)
+                }
+                content.image = image//itemIdentifier.summary.image
                 content.imageProperties.maximumSize = .init(width: 50, height: 50)
                 content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
+                self?.loadImage(for: itemIdentifier)
                 
                 cell.accessories = [.disclosureIndicator()]
                 if itemIdentifier.summary.isUrgent {
@@ -113,6 +120,26 @@ private extension AdsListView {
             }
         }
         
+    }
+    
+    func loadImage(for item: AdComplete) {
+        guard let link = item.summary.imageAddress else { return }
+        
+        UIImage.loaded(
+            from: link,
+            id: item.id
+        ) { [weak diffDataSource] loadedImage, _ in
+            guard let loadedImage = loadedImage else { return }
+            
+            ImageStore.shared.saveImage(loadedImage, withAddress: link)
+            
+            var snapshot = diffDataSource?.snapshot()
+            if #available(iOS 15.0, *) {
+                snapshot?.reconfigureItems([item])
+            } else {
+                snapshot?.reloadItems([item])
+            }
+        }
     }
     
 }

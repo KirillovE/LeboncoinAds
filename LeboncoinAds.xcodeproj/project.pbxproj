@@ -18,6 +18,7 @@
 		4411D15227679ECC0034A403 /* ClosureBasedAdsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */; };
 		4411D1542767A1620034A403 /* AdsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4411D1532767A1620034A403 /* AdsAPIService.swift */; };
 		442319722763F0BB00268B74 /* AdsListSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442319712763F0BB00268B74 /* AdsListSection.swift */; };
+		446D37AF27694F5C0051B75E /* ImageStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446D37AE27694F5C0051B75E /* ImageStore.swift */; };
 		447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447E18EA2763408C00B77F38 /* AdsListView.swift */; };
 		44A58B2B2768F023004EC53D /* Models in Frameworks */ = {isa = PBXBuildFile; productRef = 44A58B2A2768F023004EC53D /* Models */; };
 		44A58B2F2768F051004EC53D /* AdsLoader in Frameworks */ = {isa = PBXBuildFile; productRef = 44A58B2E2768F051004EC53D /* AdsLoader */; };
@@ -71,6 +72,7 @@
 		4411D15127679ECC0034A403 /* ClosureBasedAdsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosureBasedAdsProvider.swift; sourceTree = "<group>"; };
 		4411D1532767A1620034A403 /* AdsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsAPIService.swift; sourceTree = "<group>"; };
 		442319712763F0BB00268B74 /* AdsListSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListSection.swift; sourceTree = "<group>"; };
+		446D37AE27694F5C0051B75E /* ImageStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageStore.swift; sourceTree = "<group>"; };
 		447E18EA2763408C00B77F38 /* AdsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsListView.swift; sourceTree = "<group>"; };
 		44A58B292768EFF4004EC53D /* Models */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Models; sourceTree = "<group>"; };
 		44A58B2C2768F036004EC53D /* AdsLoader */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = AdsLoader; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				44B3BCBD2764F60D0065548B /* ListSelectionDelegate.swift */,
 				44B3BCBF2764FBC30065548B /* SelectionProvider.swift */,
 				44F8F38627681CFE0043E07E /* UIImage+Loaded.swift */,
+				446D37AE27694F5C0051B75E /* ImageStore.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -430,6 +433,7 @@
 				44C6059827625949002E4626 /* AdsListAssembler.swift in Sources */,
 				447E18EB2763408C00B77F38 /* AdsListView.swift in Sources */,
 				4411D14C276693680034A403 /* DetailsAssembler.swift in Sources */,
+				446D37AF27694F5C0051B75E /* ImageStore.swift in Sources */,
 				4411D1542767A1620034A403 /* AdsAPIService.swift in Sources */,
 				44C60557275E7EA9002E4626 /* SceneDelegate.swift in Sources */,
 				44C6059627623FDA002E4626 /* AdsProvider.swift in Sources */,
