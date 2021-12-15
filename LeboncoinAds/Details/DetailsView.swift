@@ -65,16 +65,18 @@ private extension DetailsView {
                 trailing: DetailsSpec.insetHorizontal
             )
             
-            let headerSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(1)
-            )
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerSize,
-                elementKind: DetailsView.sectionHeaderElementKind,
-                alignment: .top
-            )
-            section.boundarySupplementaryItems = [sectionHeader]
+            if sectionIndex == 0 {
+                let headerSize = NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1.0),
+                    heightDimension: .estimated(1)
+                )
+                let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                    layoutSize: headerSize,
+                    elementKind: DetailsView.sectionHeaderElementKind,
+                    alignment: .top
+                )
+                section.boundarySupplementaryItems = [sectionHeader]
+            }
             
             return section
         }
