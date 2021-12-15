@@ -45,6 +45,7 @@ struct NetworkHandler {
             else {
                 let text = NSLocalizedString(
                     "invalid-respones-format-error",
+                    bundle: .module,
                     comment: "Message about response being in invalid format"
                 )
                 let error = TextualError(stringLiteral: text)

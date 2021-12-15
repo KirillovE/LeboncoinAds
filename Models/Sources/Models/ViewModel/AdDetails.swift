@@ -66,6 +66,7 @@ public struct AdDetails {
                     systemImageName: "seal",
                     text: NSLocalizedString(
                         "urgent-marker",
+                        bundle: .module,
                         comment: "Shown in as part of desription of urgent classified ads"
                     )
                 ),
