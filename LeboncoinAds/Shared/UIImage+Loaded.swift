@@ -4,11 +4,10 @@ extension UIImage {
     
     static func loaded(
         from link: String,
-        id: Int,
-        completion: @escaping (UIImage?, Int) -> ()
+        completion: @escaping (UIImage?) -> ()
     ) {
         guard let url = URL(string: link) else {
-            completion(nil, id)
+            completion(nil)
             return
         }
         
@@ -21,12 +20,12 @@ extension UIImage {
                 let data = data,
                 error == nil
             else {
-                completion(nil, id)
+                completion(nil)
                 return
             }
             
             let image = UIImage(data: data)
-            completion(image, id)
+            completion(image)
         }.resume()
     }
     

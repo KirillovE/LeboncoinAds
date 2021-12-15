@@ -121,17 +121,20 @@ private extension AdsListView {
         if let image = ImageStore.shared.fetchImage(withAddress: link) {
             return image
         }
-        UIImage.loaded(from: link, id: item.id) { [weak diffDataSource] loadedImage, _ in
-            guard let loadedImage = loadedImage else { return }
+        UIImage.loaded(from: link) { [weak diffDataSource] loadedImage in
+            guard
+                let loadedImage = loadedImage,
+                var snapshot = diffDataSource?.snapshot()
+            else { return }
             ImageStore.shared.saveImage(loadedImage, withAddress: link)
             
-            var snapshot = diffDataSource?.snapshot()
             DispatchQueue.main.async {
                 if #available(iOS 15.0, *) {
-                    snapshot?.reconfigureItems([item])
+                    snapshot.reconfigureItems([item])
                 } else {
-                    snapshot?.reloadItems([item])
+                    snapshot.reloadItems([item])
                 }
+                diffDataSource?.apply(snapshot)
             }
         }
         return ImageStore.placeholder

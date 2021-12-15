@@ -61,7 +61,6 @@ extension ModelConverter {
             categoryName: categoryName,
             isUrgent: ad.isUrgent,
             imageAddress: ad.imagesUrl.small,
-            image: placeholderImage,
             priceRepresentation: priceRepresentation
         )
 

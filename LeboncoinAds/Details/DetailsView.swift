@@ -64,7 +64,7 @@ private extension DetailsView {
             
             let headerSize = NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(0)
+                heightDimension: .estimated(1)
             )
             let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
                 layoutSize: headerSize,
@@ -137,20 +137,24 @@ private extension DetailsView {
     }
     
     func loadImage() {
-        UIImage.loaded(
-            from: data?.imageAddress ?? "",
-            id: data?.id ?? 0
-        ) { [weak self] loadedImage, id in
-            guard
-                let loadedImage = loadedImage,
-                id == self?.data?.id
-            else { return }
-            
-            self?.data?.image = loadedImage
-            DispatchQueue.main.async {
-                self?.updateUI(headerImage: loadedImage)
+        guard let imageAddress = data?.imageAddress else { return }
+        
+        if let image = ImageStore.shared.fetchImage(withAddress: imageAddress) {
+            updateUI(headerImage: image)
+        } else {
+            updateUI(headerImage: ImageStore.placeholder)
+            UIImage.loaded(
+                from: data?.imageAddress ?? ""
+            ) { [weak self] loadedImage in
+                guard let loadedImage = loadedImage else { return }
+                
+                self?.data?.image = loadedImage
+                DispatchQueue.main.async {
+                    self?.updateUI(headerImage: loadedImage)
+                }
             }
         }
+        
     }
     
     func updateUI(headerImage: UIImage?) {

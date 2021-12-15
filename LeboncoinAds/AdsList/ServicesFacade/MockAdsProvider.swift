@@ -68,7 +68,6 @@ private extension MockAdsProvider {
                 categoryName: category,
                 isUrgent: isUrgent,
                 imageAddress: "Small image #\(digit)",
-                image: placeholderImage,
                 priceRepresentation: priceRepresentation
             )
             let details = AdDetails(
