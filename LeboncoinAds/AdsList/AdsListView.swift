@@ -64,17 +64,17 @@ private extension AdsListView {
             .CellRegistration<UICollectionViewListCell, AdComplete> {
                 [weak self] cell, indexPath, itemIdentifier in
                 
-                var content = UIListContentConfiguration.cell()
-                content.text = itemIdentifier.summary.title + "\n" + String(itemIdentifier.summary.priceRepresentation)
-                content.textProperties.numberOfLines = 0
-                content.secondaryText = itemIdentifier.summary.categoryName
-                content.secondaryTextProperties.color = .secondaryLabel
+                var content = UIListContentConfiguration.sidebarSubtitleCell()
+                let summary = itemIdentifier.summary
+                content.text = summary.title
+                content.textProperties.numberOfLines = 3
+                content.secondaryText = "\(summary.priceRepresentation) - \(summary.categoryName)"
                 content.image = self?.fetchImage(for: itemIdentifier)
-                content.imageProperties.maximumSize = .init(width: 50, height: 50)
-                content.imageProperties.cornerRadius = (content.image?.size.height ?? 0) / 2
+                content.imageProperties.maximumSize = .init(width: 50, height: .zero)
+                content.imageProperties.cornerRadius = 4
                 
                 cell.accessories = [.disclosureIndicator()]
-                if itemIdentifier.summary.isUrgent {
+                if summary.isUrgent {
                     cell.accessories.append(AdsListView.urgencyAccessory())
                 }
                 cell.contentConfiguration = content
