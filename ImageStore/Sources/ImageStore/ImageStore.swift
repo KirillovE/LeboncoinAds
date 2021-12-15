@@ -8,6 +8,8 @@ public struct ImageStore {
     public init() { }
     
     /// Fetch cached image or load it asynchronously
+    ///
+    /// If loading is performed, result is cached. You can retrieve it later
     /// - Parameters:
     ///   - link: Address of needed image
     ///   - asyncLoadingCompletion: Action to perform if async loading is needed
