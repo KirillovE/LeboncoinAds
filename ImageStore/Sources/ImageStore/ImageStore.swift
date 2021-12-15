@@ -1,11 +1,17 @@
 import UIKit
 
+/// Manages access to images. Operates with loading from server and from local cache
 public struct ImageStore {
     private static let placeholder = UIImage(named: "Placeholder")
     private let cache = Cache.shared
     
     public init() { }
     
+    /// Fetch cached image or load it asynchronously
+    /// - Parameters:
+    ///   - link: Address of needed image
+    ///   - asyncLoadingCompletion: Action to perform if async loading is needed
+    /// - Returns: Fetched image. Returns cache entry or placeholder if async loading process takes place
     public func fetchImage(
         withAddress link: String?,
         asyncLoadingCompletion: @escaping (UIImage?) -> ()
