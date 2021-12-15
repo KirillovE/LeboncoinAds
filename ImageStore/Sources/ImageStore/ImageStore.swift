@@ -14,7 +14,7 @@ public struct ImageStore {
     ///   - link: Address of needed image
     ///   - asyncLoadingCompletion: Action to perform if async loading is needed
     /// - Returns: Fetched image. Returns cache entry or placeholder if async loading process takes place
-    public func fetchImage(
+    public func fetchImageAndCache(
         withAddress link: String?,
         asyncLoadingCompletion: @escaping (UIImage?) -> ()
     ) -> UIImage? {
