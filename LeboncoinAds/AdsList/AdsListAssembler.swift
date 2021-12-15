@@ -1,6 +1,7 @@
 import UIKit
 import AdsLoader
 import ModelConverter
+import ImageStore
 
 /// Assembles classified ads list with needed parameters
 struct AdsListAssembler {
@@ -13,7 +14,12 @@ struct AdsListAssembler {
         let mode = AssemblyMode.live
         let adsProvider = mode.adsProvider
         let adsDelegate = ListSelectionDelegate()
-        return AdsListViewController(adsProvider: adsProvider, adsListDelegate: adsDelegate)
+        let imageStore = ImageStore()
+        return AdsListViewController(
+            adsProvider: adsProvider,
+            adsListDelegate: adsDelegate,
+            imageProvider: imageStore
+        )
     }
     
 }

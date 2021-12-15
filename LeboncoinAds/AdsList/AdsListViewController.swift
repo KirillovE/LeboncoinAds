@@ -4,7 +4,7 @@ import XCTest
 
 final class AdsListViewController: UIViewController {
     
-    private let list = AdsListView()
+    private let list: AdsListView
     private var adsProvider: AdsProvider
     private let adsListDelegate: ListSelectionDelegate
     
@@ -22,9 +22,14 @@ final class AdsListViewController: UIViewController {
         didSet { updateUI() }
     }
     
-    init(adsProvider: AdsProvider, adsListDelegate: ListSelectionDelegate) {
+    init(
+        adsProvider: AdsProvider,
+        adsListDelegate: ListSelectionDelegate,
+        imageProvider: ImageProvider
+    ) {
         self.adsProvider = adsProvider
         self.adsListDelegate = adsListDelegate
+        list = .init(imageProvider: imageProvider)
         super.init(nibName: nil, bundle: nil)
         configureCallbacks()
     }

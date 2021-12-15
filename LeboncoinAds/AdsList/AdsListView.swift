@@ -4,9 +4,11 @@ import ImageStore
 
 /// Representation of classified ads
 final class AdsListView: UICollectionView {
+    private let imageProvider: ImageProvider
     var diffDataSource: UICollectionViewDiffableDataSource<AdsListSection, AdComplete>?
     
-    init() {
+    init(imageProvider: ImageProvider) {
+        self.imageProvider = imageProvider
         super.init(frame: .zero, collectionViewLayout: AdsListView.createLayout())
     }
     
@@ -120,7 +122,7 @@ private extension AdsListView {
     func fetchImage(for item: AdComplete) -> UIImage? {
         guard let link = item.summary.imageAddress else { return nil }
         
-        return ImageStore().fetchImage(
+        return imageProvider.fetchImage(
             withAddress: link
         ) { [weak diffDataSource] loadedImage in
             guard

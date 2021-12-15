@@ -3,11 +3,12 @@ import Models
 
 final class DetailsViewController: UIViewController {
 
-    private let collection = DetailsView()
+    private let collection: DetailsView
     private let data: AdDetails?
     
-    init(data: AdDetails?) {
+    init(data: AdDetails?, imageProvider: ImageProvider) {
         self.data = data
+        collection = .init(imageProvider: imageProvider)
         super.init(nibName: nil, bundle: nil)
     }
     

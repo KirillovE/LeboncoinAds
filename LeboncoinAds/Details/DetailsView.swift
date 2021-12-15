@@ -5,9 +5,11 @@ import ImageStore
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
     private var diffDataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails.TextField>?
+    private let imageProvider: ImageProvider
     private static let sectionHeaderElementKind = "DetailsViewSection"
     
-    init() {
+    init(imageProvider: ImageProvider) {
+        self.imageProvider = imageProvider
         super.init(frame: .zero, collectionViewLayout: DetailsView.createLayout())
     }
     
@@ -140,7 +142,7 @@ private extension DetailsView {
     func loadImage() {
         guard let imageAddress = data?.imageAddress else { return }
         
-        let image = ImageStore().fetchImage(
+        let image = imageProvider.fetchImage(
             withAddress: imageAddress
         ) { [weak self] loadedImage in
             guard let loadedImage = loadedImage else { return }
