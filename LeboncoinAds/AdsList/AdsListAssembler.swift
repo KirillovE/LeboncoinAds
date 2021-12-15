@@ -6,8 +6,6 @@ import ImageStore
 /// Assembles classified ads list with needed parameters
 struct AdsListAssembler {
     
-    private static let placeholder = UIImage(named: "Placeholder") ?? UIImage()
-    
     /// Assembles view controller using needed parameters
     /// - Returns: Assembled view controller
     func assembleViewController() -> UIViewController {
