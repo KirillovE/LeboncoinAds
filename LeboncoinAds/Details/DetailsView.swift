@@ -1,5 +1,6 @@
 import UIKit
 import Models
+import ImageStore
 
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
@@ -139,31 +140,28 @@ private extension DetailsView {
     func loadImage() {
         guard let imageAddress = data?.imageAddress else { return }
         
-        if let image = ImageStore.shared.fetchImage(withAddress: imageAddress) {
-            updateUI(headerImage: image)
-        } else {
-            updateUI(headerImage: ImageStore.placeholder)
-            UIImage.loaded(
-                from: data?.imageAddress ?? ""
-            ) { [weak self] loadedImage in
-                guard let loadedImage = loadedImage else { return }
-                
-                self?.data?.image = loadedImage
-                DispatchQueue.main.async {
-                    self?.updateUI(headerImage: loadedImage)
-                }
-            }
+        let image = ImageStore().fetchImage(
+            withAddress: imageAddress
+        ) { [weak self] loadedImage in
+            guard let loadedImage = loadedImage else { return }
+            
+            self?.data?.image = loadedImage
+            self?.updateUI(headerImage: loadedImage)
         }
         
+        data?.image = image
+        updateUI(headerImage: image)
     }
     
     func updateUI(headerImage: UIImage?) {
-        var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
-        let mainSection = DetailsSection.main(headerImage)
-        snapshot.appendSections([mainSection, .largeDescription])
-        snapshot.appendItems(data?.textFields.dropLast() ?? [], toSection: mainSection)
-        data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
-        diffDataSource?.apply(snapshot, animatingDifferences: true)
+        DispatchQueue.main.async {
+            var snapshot = NSDiffableDataSourceSnapshot<DetailsSection, AdDetails.TextField>()
+            let mainSection = DetailsSection.main(headerImage)
+            snapshot.appendSections([mainSection, .largeDescription])
+            snapshot.appendItems(self.data?.textFields.dropLast() ?? [], toSection: mainSection)
+            self.data?.textFields.last.map { snapshot.appendItems([$0], toSection: .largeDescription) }
+            self.diffDataSource?.apply(snapshot, animatingDifferences: true)
+        }
     }
 
 }

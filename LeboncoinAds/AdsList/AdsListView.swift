@@ -1,5 +1,6 @@
 import UIKit
 import Models
+import ImageStore
 
 /// Representation of classified ads
 final class AdsListView: UICollectionView {
@@ -118,26 +119,23 @@ private extension AdsListView {
     
     func fetchImage(for item: AdComplete) -> UIImage? {
         guard let link = item.summary.imageAddress else { return nil }
-        if let image = ImageStore.shared.fetchImage(withAddress: link) {
-            return image
-        } else {
-            UIImage.loaded(from: link) { [weak diffDataSource] loadedImage in
-                guard
-                    let loadedImage = loadedImage,
-                    var snapshot = diffDataSource?.snapshot()
-                else { return }
-                ImageStore.shared.saveImage(loadedImage, withAddress: link)
-                
-                DispatchQueue.main.async {
-                    if #available(iOS 15.0, *) {
-                        snapshot.reconfigureItems([item])
-                    } else {
-                        snapshot.reloadItems([item])
-                    }
-                    diffDataSource?.apply(snapshot)
+        
+        return ImageStore().fetchImage(
+            withAddress: link
+        ) { [weak diffDataSource] loadedImage in
+            guard
+                loadedImage != nil,
+                var snapshot = diffDataSource?.snapshot()
+            else { return }
+            
+            DispatchQueue.main.async {
+                if #available(iOS 15.0, *) {
+                    snapshot.reconfigureItems([item])
+                } else {
+                    snapshot.reloadItems([item])
                 }
+                diffDataSource?.apply(snapshot)
             }
-            return ImageStore.placeholder
         }
     }
     
