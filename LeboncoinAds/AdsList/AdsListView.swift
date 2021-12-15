@@ -47,7 +47,11 @@ private extension AdsListView {
     
     static func createLayout() -> UICollectionViewLayout {
         var configuration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
-        configuration.headerMode = .supplementary
+        if #available(iOS 15.0, *) {
+            configuration.headerMode = .supplementary
+        } else {
+            configuration.headerMode = .none
+        }
         return UICollectionViewCompositionalLayout.list(using: configuration)
     }
     
