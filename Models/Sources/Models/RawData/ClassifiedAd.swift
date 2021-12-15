@@ -13,7 +13,7 @@ public struct ClassifiedAd: Decodable {
     /// Short title of ad
     public let title: String
     
-    /// Full textual description of object
+    /// Full textual description of ad
     public let description: String
     
     /// Is ad urgent or not

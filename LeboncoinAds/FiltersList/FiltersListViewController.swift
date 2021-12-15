@@ -1,6 +1,7 @@
 import UIKit
 import Models
 
+/// Manages filters list
 final class FiltersListViewController: UIViewController, FilterProvider {
     
     private let table = FiltersListView()

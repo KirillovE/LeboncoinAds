@@ -79,8 +79,14 @@ public struct AdDetails {
 }
 
 extension AdDetails {
+    
+    /// Single textual element of ad detail to enumerate in data source
     public struct TextField: Hashable {
+        
+        /// Accompanying image name to refine visual look
         public let systemImageName: String
+        
+        /// Text to show in data source
         public let text: String
     }
 }

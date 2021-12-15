@@ -1,3 +1,3 @@
 # AdsLoader
 
-Package for performing ads downloading from Leboncoin
+Package for performing ads downloading from Leboncoin API

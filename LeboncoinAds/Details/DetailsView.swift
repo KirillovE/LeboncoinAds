@@ -2,6 +2,7 @@ import UIKit
 import Models
 import ImageStore
 
+/// Visual representation of ad details
 final class DetailsView: UICollectionView {
     private var data: AdDetails?
     private var diffDataSource: UICollectionViewDiffableDataSource<DetailsSection, AdDetails.TextField>?

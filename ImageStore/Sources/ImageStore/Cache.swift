@@ -1,9 +1,10 @@
 import UIKit
 
+/// Keeps underlying cash data structure
 final class Cache {
     static let shared = Cache()
-    
     var store = NSCache<NSString, UIImage>()
+    
     private init() { }
     
     func fetchImage(withAddress address: String) -> UIImage? {

@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  LeboncoinAds
-//
-//  Created by Евгений Кириллов on 06.12.21.
-//
-
 import UIKit
 
 @main

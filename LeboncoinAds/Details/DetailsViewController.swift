@@ -1,6 +1,7 @@
 import UIKit
 import Models
 
+/// Manages details screen
 final class DetailsViewController: UIViewController {
 
     private let collection: DetailsView

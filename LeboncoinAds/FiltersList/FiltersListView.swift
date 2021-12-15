@@ -1,6 +1,7 @@
 import UIKit
 import Models
 
+/// List representation of filters
 final class FiltersListView: UITableView {
     
     /// Current reuse identifier of the table's cells

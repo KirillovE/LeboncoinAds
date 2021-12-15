@@ -2,6 +2,7 @@ import UIKit
 import Models
 import XCTest
 
+/// Manages classified ads list
 final class AdsListViewController: UIViewController {
     
     private let list: AdsListView
