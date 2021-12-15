@@ -2,10 +2,23 @@ import XCTest
 @testable import ImageStore
 
 final class ImageStoreTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(ImageStore().text, "Hello, World!")
+
+    private let cache = Cache.shared
+    
+    override func tearDown() {
+        cache.store.removeAllObjects()
+    }
+    
+    func testFetchAbsent() {
+        let cached = cache.fetchImage(withAddress: "test")
+        XCTAssertNil(cached)
+    }
+    
+    func testFetchPresent() {
+        let image = UIImage()
+        let address = "test"
+        cache.saveImage(image, withAddress: address)
+        let cached = cache.fetchImage(withAddress: address)
+        XCTAssertNotNil(cached)
     }
 }
