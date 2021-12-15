@@ -62,7 +62,7 @@ private extension AdsListViewController {
     }
     
     func configureNavigationItems() {
-        title = "Classified ads"
+        title = NSLocalizedString("ads", comment: "Title of classified ads list")
         navigationController?.navigationBar.prefersLargeTitles = true
         let filterButton = UIBarButtonItem(
             image: .init(systemName: "line.3.horizontal.decrease.circle"),
@@ -112,7 +112,7 @@ private extension AdsListViewController {
     
     func handleError(_ error: TextualError) {
         let errorController = UIAlertController(
-            title: "Error",
+            title: NSLocalizedString("error", comment: "Error alert title"),
             message: String(describing: error),
             preferredStyle: .alert
         )
@@ -123,7 +123,8 @@ private extension AdsListViewController {
     
     func handleSelectionAt(_ indexPath: IndexPath) {
         guard let selectedAd = list.diffDataSource?.itemIdentifier(for: indexPath) else {
-            let error: TextualError = "Something went wrong. Please, tell developer about it"
+            let errorText = NSLocalizedString("general-error", comment: "General long error message")
+            let error = TextualError(stringLiteral: errorText)
             handleError(error)
             return
         }

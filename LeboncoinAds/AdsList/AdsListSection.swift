@@ -1,3 +1,5 @@
+import Foundation
+
 /// Sections of classified ads list
 enum AdsListSection: CaseIterable {
     
@@ -12,9 +14,15 @@ extension AdsListSection: CustomStringConvertible {
     var description: String {
         switch self {
         case .urgent:
-            return "Urgents"
+            return NSLocalizedString(
+                "urgent-section",
+                comment: "Description of urgent ads list section"
+            )
         case .nonUrgent:
-            return "Nonurgents"
+            return NSLocalizedString(
+                "non-urgent-section",
+                comment: "Description of nonurgent ads list section"
+            )
         }
     }
 }

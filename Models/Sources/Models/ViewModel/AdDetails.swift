@@ -61,7 +61,16 @@ public struct AdDetails {
             .init(systemImageName: "doc.plaintext", text: description)
         ]
         if isUrgent {
-            fields.insert(.init(systemImageName: "seal", text: "Urgent"), at: 2)
+            fields.insert(
+                .init(
+                    systemImageName: "seal",
+                    text: NSLocalizedString(
+                        "urgent-marker",
+                        comment: "Shown in as part of desription of urgent classified ads"
+                    )
+                ),
+                at: 2
+            )
         }
         self.textFields = fields
     }

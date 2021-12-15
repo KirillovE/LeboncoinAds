@@ -18,7 +18,7 @@ final class DetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Details"
+        title = NSLocalizedString("details", comment: "Classified ad details screen title")
         collection.configure(
             data: data,
             superview: view

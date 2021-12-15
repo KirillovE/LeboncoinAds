@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "AdsLoader",
+    defaultLocalization: "en",
     platforms: [.iOS(.v14)],
     products: [
         .library(

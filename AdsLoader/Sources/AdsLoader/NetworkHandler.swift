@@ -43,7 +43,12 @@ struct NetworkHandler {
                 mimeType == "text/plain",
                 let loadedData = data
             else {
-                completion(.failure("Invalid response format"))
+                let text = NSLocalizedString(
+                    "invalid-respones-format-error",
+                    comment: "Message about response being in invalid format"
+                )
+                let error = TextualError(stringLiteral: text)
+                completion(.failure(error))
                 return
             }
             
