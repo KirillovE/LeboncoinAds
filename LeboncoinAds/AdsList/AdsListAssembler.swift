@@ -31,7 +31,7 @@ private extension AdsListAssembler {
             case .live:
                 return ClosureBasedAdsProvider(
                     adsLoader: AdsLoader(),
-                    modelsConverter: ModelConverter(placeholder: AdsListAssembler.placeholder)
+                    modelsConverter: ModelConverter()
                 )
             case .mockSuccess:
                 return MockAdsProvider(responsesCount: 1)

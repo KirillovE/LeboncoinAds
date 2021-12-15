@@ -7,7 +7,6 @@ import UIKit
 /// Multiple responces per one request can be provided
 struct MockAdsProvider: AdsProvider {
     
-    private let placeholderImage = UIImage(named: "Placeholder")!
     private let responsesCount: Int
     private let includeErrors: Bool
     
@@ -78,7 +77,7 @@ private extension MockAdsProvider {
                 creationDate: "\(digit) days ago",
                 isUrgent: isUrgent,
                 imageAddress: "Big image #\(digit)",
-                image: placeholderImage,
+                image: nil,
                 priceRepresentation: priceRepresentation
             )
             return AdComplete(

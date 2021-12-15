@@ -4,17 +4,13 @@ import UIKit
 /// Object that converts data from raw to view model
 public struct ModelConverter {
     
-    private let placeholderImage: UIImage
-    
     private let numberFormatter: NumberFormatter = {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         return formatter
     }()
 
-    public init(placeholder: UIImage) {
-        placeholderImage = placeholder
-    }
+    public init() { }
     
     /// Converts raw ads to view models sorting them in ascending order by date of creation
     /// - Parameters:
